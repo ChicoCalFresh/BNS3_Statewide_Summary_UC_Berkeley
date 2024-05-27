@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+
+  
+
+# blue - 2b388f
+# purple - 
+
+website:
+  title: "BNS3 - UC Berkeley"
+  navbar:
+    background: "#702b84"
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Demographics
+        menu:
+          - href: Demographics.qmd
+            text: Personal Demographics
+          - href: Academic_Profile.qmd
+            text: Academic Profile
+      - href: Workload.qmd
+        text: Workload
+      - href: Housing.qmd
+        text: Housing
+      - href: CalFresh.qmd
+        text: CalFresh Food
+      - href: Other_Basic_Needs.qmd
+        text: Other Basic Needs
+      - href: Food_Security.qmd
+        text: Food Security
+      - text: Other Health Variables
+        menu:
+          - href: Eating_Habits.qmd
+            text: Eating Habits
+          - href: Physical_Activity.qmd
+            text: Physical Activity
+          - href: Mental_Health.qmd
+            text: Mental Health
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - custom.scss
+    toc: true
+    toc_float: yes
+    
+    
+    
+    
+
+

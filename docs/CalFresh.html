@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BNS3 - UC Berkeley - CalFresh Food Program</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BNS3 - UC Berkeley</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-demographics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Demographics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-demographics">    
+        <li>
+    <a class="dropdown-item" href="./Demographics.html" rel="" target="">
+ <span class="dropdown-text">Personal Demographics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Academic_Profile.html" rel="" target="">
+ <span class="dropdown-text">Academic Profile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./Workload.html" rel="" target="">
+ <span class="menu-text">Workload</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Housing.html" rel="" target="">
+ <span class="menu-text">Housing</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./CalFresh.html" rel="" target="" aria-current="page">
+ <span class="menu-text">CalFresh Food</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Other_Basic_Needs.html" rel="" target="">
+ <span class="menu-text">Other Basic Needs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Food_Security.html" rel="" target="">
+ <span class="menu-text">Food Security</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-other-health-variables" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Other Health Variables</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-other-health-variables">    
+        <li>
+    <a class="dropdown-item" href="./Eating_Habits.html" rel="" target="">
+ <span class="dropdown-text">Eating Habits</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Physical_Activity.html" rel="" target="">
+ <span class="dropdown-text">Physical Activity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Mental_Health.html" rel="" target="">
+ <span class="dropdown-text">Mental Health</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cal_status_reference" id="toc-cal_status_reference" class="nav-link active" data-scroll-target="#cal_status_reference">CalFresh Food Status</a></li>
+  <li><a href="#reference1" id="toc-reference1" class="nav-link" data-scroll-target="#reference1">Income &amp; Household Size</a></li>
+  <li><a href="#calfresh-food-eligibility" id="toc-calfresh-food-eligibility" class="nav-link" data-scroll-target="#calfresh-food-eligibility">CalFresh Food Eligibility</a></li>
+  <li><a href="#impact" id="toc-impact" class="nav-link" data-scroll-target="#impact">Impact:</a>
+  <ul class="collapse">
+  <li><a href="#reference2" id="toc-reference2" class="nav-link" data-scroll-target="#reference2">CalFresh Food EBT</a></li>
+  <li><a href="#reference3" id="toc-reference3" class="nav-link" data-scroll-target="#reference3">Monthly CalFresh Food Money</a></li>
+  <li><a href="#household-size-breakdown" id="toc-household-size-breakdown" class="nav-link" data-scroll-target="#household-size-breakdown">Household Size Breakdown</a></li>
+  <li><a href="#was-this-enough" id="toc-was-this-enough" class="nav-link" data-scroll-target="#was-this-enough">Was This Enough?</a></li>
+  <li><a href="#calfresh-food---benefits" id="toc-calfresh-food---benefits" class="nav-link" data-scroll-target="#calfresh-food---benefits">CalFresh Food - Benefits</a></li>
+  <li><a href="#calfresh-food---barriers" id="toc-calfresh-food---barriers" class="nav-link" data-scroll-target="#calfresh-food---barriers">CalFresh Food - Barriers</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CalFresh Food Program</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Students were asked to report information relating to the CalFresh Food Program and CalFresh Food eligibility. This includes U.S. citizenship (or lawful permanent residency), household size, and monthly household income. Those that were not using CalFresh Food were asked to report any barriers to applying for CalFresh Food, while those that reported currently using CalFresh Food were asked to report their monthly Electronic Benefit Transfer (EBT), whether the EBT received is enough for them, and their perceived impact of CalFresh Food.</p>
+<p><em>Note: EBT is the CalFresh benefits delivery system that holds CalFresh dollars similar to a debit card. The California CalFresh Food Program is known federally as the Supplemental Nutrition Assistance Program (SNAP).</em></p>
+<p><em>As a reminder, students had the option to select “Prefer not to answer” for all questions, and these responses were set as missing values. In addition, 11 (6.0%) students did not finish the survey. The n reporting refers to the total number of non-missing responses, while the percent reporting reflects the percent of non-missing responses.</em></p>
+<section id="cal_status_reference" class="level2">
+<h2 data-anchor-id="cal_status_reference">CalFresh Food Status</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CalFresh_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="787"></p>
+<figcaption class="figure-caption">Figure 5.1. CalFresh Food Status (n=165, 91% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>Please mark all the statements that apply to you.</em></p>
+<p><strong>Summary:</strong> A total of 56 (33.9%) students reported currently using CalFresh Food, 4 (2.4%) reported they used CalFresh Food in the past as a college student, and 19 (11.5%) reported that they used CalFresh Food before attending college. Additionally, 79 (47.9%) students reported that they heard of CalFresh Food, but never used it, while 7 (4.2%) reported that they never heard of it.</p>
+<p><br></p>
+</section>
+<section id="reference1" class="level2">
+<h2 data-anchor-id="reference1">Income &amp; Household Size</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; width: 100%; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-3">
+<caption style="caption-side: top; text-align: center;"><p>Table 5.1. Income &amp; Household Size (n=142, 78% of 182
+reporting).</p></caption><colgroup><col><col><col><col><col><col><col><col><col></colgroup><tbody><tr>
+<th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;"></th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">1</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">2</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">3</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">4</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">5</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">6</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">7</th><th style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">8</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">Less than $150</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">30</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">10</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">6</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">6</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$151-$2,148</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">34</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">12</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">7</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">3</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$2,149-$2,904</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">6</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">1</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$2,905-$3,660</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">3</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">3</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$3,661-$4,418</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$4,419-$5,174</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$5,175-$5,930</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$5,931-$6,688</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$6,689-$7,444</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">2</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-style: italic; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(162, 205, 90); font-weight: bold; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$7,445-$8,202</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 255, 0); font-weight: normal; font-style: italic; font-size: 12pt;">0</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; font-weight: normal; font-size: 12pt;">$8,203 or more</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">1</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 99, 71); font-weight: normal; font-size: 12pt;">0</td><td style="vertical-align: top; text-align: center; white-space: normal; border-style: solid solid solid solid; border-width: 3pt 3pt 3pt 3pt; border-top-color: rgb(255, 255, 255);  border-right-color: rgb(255, 255, 255);  border-bottom-color: rgb(255, 255, 255);  border-left-color: rgb(255, 255, 255); padding: 6pt 6pt 6pt 6pt; background-color: rgb(255, 255, 0); font-weight: normal; font-size: 12pt;">1</td></tr>
+</tbody></table>
+
+</div>
+</div>
+<p><strong>Survey Questions:</strong></p>
+<ul>
+<li><p><em>How many people in your household do you purchase and prepare food with, including yourself? This may or may not include your roommate(s).</em></p></li>
+<li><p><em>Based on the household you defined in the previous question, how much is your household’s gross monthly income (before taxes and not including financial aid)? Note: Monthly income is money earned from jobs on your pay stubs, paid internships, or money deposited in your accounts every month from others (like parents). If you are not sure about your gross income, take your hourly rate and multiply by the number of hours you work per month. Please do NOT include financial aid or grants. Please do NOT include one-time monetary gifts from family or friends. Please do NOT include any balance in personal savings accounts. Remember, if you have a household of more than 1, you must include everyone’s gross income (use your best guess).</em></p></li>
+</ul>
+<p><strong>Additional Notes:</strong> Household size and income are used to determine CalFresh Food eligibility (among other factors). Cells highlighted in green indicate a student is likely eligible for CalFresh Food based on their self-reported income/household size, and cells highlighted in red indicate a student is likely ineligible. Household size was asked in a multiple choice format with options ranging from <em>“1 (myself)”</em> to <em>“8 or more (myself plus 7, etc.),”</em> where those who reported eight or more were coded as <em>“8.”</em> Hence, there was some uncertainty in determining eligibility among students who reported a household size of eight or more and a higher income, where these cells are highlighted in yellow.</p>
+<p><strong>Summary:</strong> The most common household size reported was a household size of 1, while the most common income reported was $151-$2,148. A total of 30 students who had a household size of one with a monthly household income of less than $150, and 34 students who had a household size of one with a monthly household income of $151-$2,148 were deemed likely eligible for CalFresh Food. Of those with a household size of one, 85.3% met the income/household size eligibility criteria. Of those with a household size of two, 82.4% met the income/household size eligibility criteria.</p>
+<p><br></p>
+</section>
+<section id="calfresh-food-eligibility" class="level2">
+<h2 data-anchor-id="calfresh-food-eligibility">CalFresh Food Eligibility</h2>
+<div class="row">
+
+<div class="col-md-6">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CalFresh_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
+<figcaption class="figure-caption">Figure 5.2. CalFresh Food Eligibility (n=143, 79% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Survey Questions:</strong> <em>This variable was derived using self-reported household size and income (See <a href="#reference1">Income &amp; Household Size</a>)</em></p>
+<p><strong>Additional Notes:</strong> Only county workers have the authority to determine official eligibility for CalFresh Food. These eligibility rates were estimated based on self-reported household size and income. Below is a list of eligibility criteria for students:</p>
+<ul>
+<li>Meets household size/income requirements from the California Department of Social Services.</li>
+<li>The person is either a U.S. citizen or lawful permanent resident.<br>
+</li>
+<li>If the person is between the ages of 18 to 49, and is at least a part-time student (enrolled in six or more units), then this person is classified as a student by the California Department of Social Services and needs to meet the following additional criteria:
+<ul>
+<li>Does not get more than half of their meals from meal plans (less than 11 per week).&nbsp;<strong>(All students from this study met this criteria as this was one of the inclusion criteria to take the survey)</strong></li>
+<li>Meets one of the possible work requirements such as working 20 or more hours per week or being enrolled in an approved Local Program that Increases Employability (LPIE). At the time of the start of this survey, all EOP/EOPS programs were considered an LIPE, however, campuses now need to apply and receive approval for their program to be considered an LPIE. <strong>When determining eligibility, all students were assumed to meet the work requirement since they were all EOP/EOPS students.</strong></li>
+</ul></li>
+</ul>
+<p><strong>Summary:</strong> A total of 117 (81.8%) students were likely eligible for CalFresh Food, while 26 (18.2%) were likely not eligible. Many students selected “Prefer not to answer” when reporting their income. Calfresh Food eligibility was unable to be determined among these students and among any students who answered “Prefer not to answer” to household size.</p>
+<div class="col-md-5">
+
+
+<hr>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 5.2. CalFresh Food Eligibility Breakdown. </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Eligibility Criteria:</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yes (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">US Citizen or lawful permanent resident i.e. has a ‘green card’. (n = 173)</td>
+<td style="text-align: left; width: 3.5cm;">166 (96.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Meets income/household requirements. (n = 142)</td>
+<td style="text-align: left; width: 3.5cm;">121 (85.2%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Meets 20 hours/week work exemption. (n = 169)</td>
+<td style="text-align: left; width: 3.5cm;">31 (18.3%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Questions:</strong></p>
+<ul>
+<li><em>Are you a U.S. citizen?</em></li>
+<li><em>If not a U.S. citizen, are you a lawful permanent resident (i.e.&nbsp;have a “green card)?</em></li>
+<li><em>Estimate the number of hours you work in a PAID job (e.g.&nbsp;server at a restaurant, office assistant, etc.) or paid internship (e.g.&nbsp;training, shadowing, or practicum) per week.</em></li>
+<li><em>For income and household size survey questions, see <a href="#reference1">Income and Household Size</a></em></li>
+</ul>
+<p><strong>Additional Notes:</strong> There are many other possible work exemptions for students to be eligible for CalFresh Food, where only the 20 hours/week work exemption was assessed in this survey.</p>
+<p><strong>Summary:</strong> Based on self-reported data, 166 (96.0%) students met the citizenship requirement of either being a US Citizen or a lawful permanent resident. A total of 121 (85.2%) students met the income/household size requirements, and 31 (18.3%) students met the 20 hours/week work exemption. As a reminder, students don’t need to meet a work requirement if they are are enrolled in an LPIE such as an approved EOP/EOPS.</p>
+<p><br></p>
+</div></div></section>
+<section id="impact" class="level1">
+<h1>Impact:</h1>
+<p>Only students who reported currently using CalFresh Food or used it in the past as a college student saw the following set of questions. Students were asked to report how much EBT they received per month, how many people they fed with their EBT, whether they received enough money, how long their EBT lasts every month, and their perceived impact of CalFresh Food on academic and non-academic matters.</p>
+<section id="reference2" class="level2">
+<h2 data-anchor-id="reference2">CalFresh Food EBT</h2>
+<div class="cell" data-layout-align="center" data-fig-cap-location="top">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CalFresh_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure 5.3. CalFresh Food Application Household Size (n=59, 32% of 182 reporting) &amp; Figure 5.4. Number of People Fed Through EBT (n=60, 33% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Questions:</strong> <em>Indicated in x-axis Labels</em></p>
+<p><strong>Additional Notes:</strong> For the number of people fed through EBT, students had response choices ranging from “1 (myself)” to “8 or more (myself plus 7, etc.),” where eight or more was coded as “8”.</p>
+<p><strong>Summary:</strong> A total of 5 (8.5%) students reported applying for CalFresh Food as a household, while 41 (68.3%) students reported feeding only one person in their household, and 8 (13.3%) reported feeding two people (one plus themselves).</p>
+<p><br></p>
+</section>
+<section id="reference3" class="level2">
+<h2 data-anchor-id="reference3">Monthly CalFresh Food Money</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CalFresh_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure 5.5. Monthly CalFresh Food Money (n=60, 33% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>How much money is added to your CalFresh EBT card each month for your CalFresh household (i.e.&nbsp;the people you purchase and prepare food with)?</em></p>
+<p><strong>Summary:</strong> The average amount of money received per household using CalFresh Food (denoted by the dotted line) was $258.43, while the median was $250. The amounts reported ranged from $60 to $700.</p>
+<p><br></p>
+</section>
+<section id="household-size-breakdown" class="level2">
+<h2 data-anchor-id="household-size-breakdown">Household Size Breakdown</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 5.3. EBT per Number of People Fed Through EBT (n=60, 33% of 182 reporting). </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Number of People Fed Through EBT</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Household Average EBT</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Per Person Average EBT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">$249.98</td>
+<td style="text-align: left;">$249.98</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">$255.25</td>
+<td style="text-align: left;">$127.62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">$345.50</td>
+<td style="text-align: left;">$115.17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">$265.50</td>
+<td style="text-align: left;">$ 66.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">$150.00</td>
+<td style="text-align: left;">$ 30.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">$230.50</td>
+<td style="text-align: left;">$ 28.81</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;"></td>
+<td style="text-align: left; font-weight: bold;">Total Average</td>
+<td style="text-align: left; font-weight: bold;">$102.99</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Questions:</strong></p>
+<ul>
+<li><em>For the number of people fed through EBT, see <a href="#reference2">CalFresh Food EBT</a></em></li>
+<li><em>For the amount of EBT received per month, see <a href="#reference3">Monthly CalFresh Food Money</a></em></li>
+</ul>
+<p><strong>Additional Notes:</strong> The per person average was computed by dividing the average amount of EBT received per month by the number of people fed through EBT. Please note, there were no students who reported feeding 6 or 7 people with their EBT and these rows were omitted.</p>
+<p><strong>Summary:</strong> The average monthly EBT received per person was NA for households feeding just themselves with EBT, NA for households feeding themselves plus one other, and $249.98 for households feeding themselves plus two others. In general, as the number of people fed through EBT increases, the per person average decreases. Taking into account all households, the total per person average was:</p>
+
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:unnamed-chunk-8">
+<colgroup><col></colgroup><tbody><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; font-weight: bold;">Per Person Average EBT</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0.4pt 0.4pt 0.4pt 0.4pt;    padding: 6pt 6pt 6pt 6pt; background-color: rgb(242, 242, 242); font-weight: normal;"></td></tr>
+</tbody></table>
+
+</section>
+<section id="was-this-enough" class="level2">
+<h2 data-anchor-id="was-this-enough">Was This Enough?</h2>
+<p><br></p>
+<div class="cell" data-layout-align="center" data-fig-cap-location="top">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CalFresh_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure 5.6. Level of Agreement on EBT Being Enough (n=60, 33% of 182 reporting) &amp; Figure 5.7. Number of Weeks EBT Lasts (n=53, 29% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Questions:</strong> <em>Indicated in x-axis Labels</em></p>
+<p><strong>Summary:</strong> Of those who received CalFresh Food Benefits, 35 (58.3%) students either agreed or strongly agreed that the money received per month was enough to provide healthy food for the month, while 13 (21.7%) either disagreed or strongly disagreed. Meanwhile, 5 (9.4%) students reported running out of benefits during the first week of the month, 4 (7.5%) during the second week, and 13 (24.5%) during the third week.</p>
+<p><br></p>
+</section>
+<section id="calfresh-food---benefits" class="level2">
+<h2 data-anchor-id="calfresh-food---benefits">CalFresh Food - Benefits</h2>
+<p><strong>While I received CalFresh benefits:</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CalFresh_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="816"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="CalFresh_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="816"></p>
+<figcaption class="figure-caption">Figure 5.8. Perceived Impact of CalFresh Food.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>For the following questions, please choose how much you agree or disagree with the impact CalFresh has or had on your life. While you received CalFresh benefits:</em></p>
+<p><strong>Summary:</strong> Some highlights of the results include the following: Because students received CalFresh Food, 44 (84.6%) were neutral, disagreed, or strongly disagreed that they worked fewer hours per week; and 40 (69.0%) were neutral, disagreed, or strongly disagreed that they shopped more frequently at the farmers’ markets. Meanwhile, 46 (76.7%) students agreed or strongly agreed that they purchased healthier foods; 44 (74.6%) agreed or strongly agreed that they cooked more frequently; and 44 (77.2%) agreed or strongly agreed that they did not worry about food running out each month because of CalFresh.</p>
+<p><br></p>
+</section>
+<section id="calfresh-food---barriers" class="level2">
+<h2 data-anchor-id="calfresh-food---barriers">CalFresh Food - Barriers</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 5.4. Reported Barriers to Using CalFresh Food. </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Reasons for Not Using CalFresh Food:</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yes (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I do not think I am eligible. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">31 (31.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No time to complete the application/ application is too long. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">22 (22.2%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">The application is too difficult. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">21 (21.2%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No time to call or go to the local social services office for my CalFresh interview. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">19 (19.2%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">The staff in my local county social services office were not helpful or supportive during my application process. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">17 (17.2%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">It's too difficult to get my verification documents. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">17 (17.2%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I feel other students need CalFresh more than I do. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">16 (16.2%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I feel uncomfortable receiving help with basic needs, like food. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">12 (12.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I don't need CalFresh. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">11 (11.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other (Please specify). (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">9 (9.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I have heard that it's not worth my time because I won't be eligible or I won't receive much money. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">8 (8.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I am embarrassed or ashamed to apply for CalFresh. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">8 (8.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">The CalFresh outreach team on campus was not helpful or supportive during my application process. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">7 (7.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">My family or household does not want to apply for CalFresh. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">5 (5.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I don't wan't my friends to find out I'm receiving food assistance. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">3 (3.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No transportation to CalFresh office or social services office. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">1 (1.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I would think less of myself if I applied for CalFresh. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">1 (1.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">My friends and peers would think less of me if I apply for CalFresh. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">1 (1.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I don't believe in social services like CalFresh, WIC, or Welfare. (n = 99)</td>
+<td style="text-align: left; width: 3.5cm;">0 (0.0%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>What are the reasons you do not have CalFresh or have never used CalFresh? (Select all that apply)</em></p>
+<p><strong>Additional Notes:</strong> Only students who reported that they <em>Never heard of CalFresh;</em> <em>Heard of it, but never used it;</em> or <em>Used it before attending college</em> saw this question (See <a href="#cal_status_reference">CalFresh Food Status section</a>).</p>
+<p><strong>Summary:</strong> The most common reason that students reported not using CalFresh Food was because they do not think they are eligible, where 31 (31.3%) students selected this option. Meanwhile 16 (16.2%) students reported that they felt other students need CalFresh Food more than they do, and 22 (22.2%) reported that they have no time to complete the application.</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:10%;">
+
+</div><div class="column" style="width:80%;">
+<div style="text-align: center;">
+<p><img src="bns_statewide_logo_array.svg" alt="CHC Logo" width="auto" height="auto"></p>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

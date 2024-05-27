@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BNS3 - UC Berkeley - Housing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">BNS3 - UC Berkeley</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-demographics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Demographics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-demographics">    
+        <li>
+    <a class="dropdown-item" href="./Demographics.html" rel="" target="">
+ <span class="dropdown-text">Personal Demographics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Academic_Profile.html" rel="" target="">
+ <span class="dropdown-text">Academic Profile</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./Workload.html" rel="" target="">
+ <span class="menu-text">Workload</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./Housing.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Housing</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./CalFresh.html" rel="" target="">
+ <span class="menu-text">CalFresh Food</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Other_Basic_Needs.html" rel="" target="">
+ <span class="menu-text">Other Basic Needs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Food_Security.html" rel="" target="">
+ <span class="menu-text">Food Security</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-other-health-variables" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Other Health Variables</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-other-health-variables">    
+        <li>
+    <a class="dropdown-item" href="./Eating_Habits.html" rel="" target="">
+ <span class="dropdown-text">Eating Habits</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Physical_Activity.html" rel="" target="">
+ <span class="dropdown-text">Physical Activity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Mental_Health.html" rel="" target="">
+ <span class="dropdown-text">Mental Health</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#living-near-college" id="toc-living-near-college" class="nav-link active" data-scroll-target="#living-near-college">Living Near College</a></li>
+  <li><a href="#current-housing-status" id="toc-current-housing-status" class="nav-link" data-scroll-target="#current-housing-status">Current Housing Status</a></li>
+  <li><a href="#In_Past_12_Months" id="toc-In_Past_12_Months" class="nav-link" data-scroll-target="#In_Past_12_Months">In the Past 12 Months…</a></li>
+  <li><a href="#Sleeping" id="toc-Sleeping" class="nav-link" data-scroll-target="#Sleeping">Sleeping Locations</a></li>
+  <li><a href="#housing-insecurity-homelessness" id="toc-housing-insecurity-homelessness" class="nav-link" data-scroll-target="#housing-insecurity-homelessness">Housing Insecurity &amp; Homelessness</a></li>
+  <li><a href="#housing-barriers" id="toc-housing-barriers" class="nav-link" data-scroll-target="#housing-barriers">Housing Barriers</a></li>
+  <li><a href="#unstable-housing" id="toc-unstable-housing" class="nav-link" data-scroll-target="#unstable-housing">Unstable Housing</a></li>
+  <li><a href="#COVID_Housing_Impact" id="toc-COVID_Housing_Impact" class="nav-link" data-scroll-target="#COVID_Housing_Impact">COVID Housing Impact</a></li>
+  <li><a href="#Footnotes" id="toc-Footnotes" class="nav-link" data-scroll-target="#Footnotes">Footnotes:</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Housing</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Students were asked to report information relating to their current and past housing conditions. This includes if they were living near their college, the type of home they were currently living in, any hardships they faced in the past year with housing, homelessness, housing insecurity, barriers to accessing housing, and any housing changes due to COVID.</p>
+<p><em>As a reminder, students had the option to select “Prefer not to answer” for all questions, and these responses were set as missing values. In addition, 11 (6.0%) students did not finish the survey. The n reporting refers to the total number of non-missing responses, while the percent reporting reflects the percent of non-missing responses.</em></p>
+<section id="living-near-college" class="level2">
+<h2 data-anchor-id="living-near-college">Living Near College</h2>
+<div class="row">
+<div class="col-md-6">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Housing_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="432"></p>
+<figcaption class="figure-caption">Figure 4.1. Students Living Near Their College (n=175, 96% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<p><strong>Survey Question:</strong> <em>Are you currently living in the city/area in which you are enrolled in college?</em></p>
+<p><strong>Summary:</strong> A total of 36 (20.6%) students reported NOT currently living in the city/area of their college, while the remaining 139 (79.4%) reported currently living in the city/area of their college. While there were many students who answered “No,” this could be due to many campuses offering remote classes and students choosing to live at home or in an area with a lower cost of living.</p>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="current-housing-status" class="level2">
+<h2 data-anchor-id="current-housing-status">Current Housing Status</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 4.1. Current Housing Status (n=176, 97% of 182 reporting). </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Current Housing Status:</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yes (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I live in university housing or residence halls</td>
+<td style="text-align: left; width: 3.5cm;">88/176 (50.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I rent an apartment or house with roommates</td>
+<td style="text-align: left; width: 3.5cm;">60/176 (34.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I rent an apartment or house without roommates</td>
+<td style="text-align: left; width: 3.5cm;">14/176 (8.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I live with parents or other relatives, not paying rent with my own money</td>
+<td style="text-align: left; width: 3.5cm;">6/176 (3.4%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I live with parents or other relatives, paying rent with my own money</td>
+<td style="text-align: left; width: 3.5cm;">4/176 (2.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other (Please specify):</td>
+<td style="text-align: left; width: 3.5cm;">2/176 (1.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I live in a sorority or fraternity house</td>
+<td style="text-align: left; width: 3.5cm;">1/176 (0.6%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I am currently living at an outdoor location, abandoned building, car, or other area not meant for regular housing without permanent housing</td>
+<td style="text-align: left; width: 3.5cm;">1/176 (0.6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I own my own home</td>
+<td style="text-align: left; width: 3.5cm;">0/176 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I live in transitional housing or a halfway home</td>
+<td style="text-align: left; width: 3.5cm;">0/176 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I am temporarily living with friends or relatives without permanent housing (i.e. couch surfing)</td>
+<td style="text-align: left; width: 3.5cm;">0/176 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I am temporarily living in a homeless shelter without permanent housing</td>
+<td style="text-align: left; width: 3.5cm;">0/176 (0.0%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>Which best describes your current housing situation?</em></p>
+<p><strong>Summary:</strong> A total of 6 (3.4%) students reported living with their parents or other relatives NOT paying rent, and a total of 4 (2.3%) students reported living with their parents or other relatives while paying rent. Additionally, 60 (34.1%) students reported renting an apartment with roommates.</p>
+<p><br></p>
+</section>
+<section id="In_Past_12_Months" class="level2">
+<h2 data-anchor-id="In_Past_12_Months">In the Past 12 Months…</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 4.2. Housing Insecurity Screening. </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">In the past 12 months...</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yes (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Was there a rent or mortgage increase that made it difficult to pay? (n = 162)</td>
+<td style="text-align: left; width: 3.5cm;">45 (27.8%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Have you lived with others beyond the expected capacity of your house or apartment? (n = 171)</td>
+<td style="text-align: left; width: 3.5cm;">31 (18.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Have you ever been late paying rent or mortgage? (n = 166)</td>
+<td style="text-align: left; width: 3.5cm;">25 (15.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Have you been unable to pay or underpaid a utility bill? (n = 166)</td>
+<td style="text-align: left; width: 3.5cm;">25 (15.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Have you been unable to pay or underpaid your rent or mortgage? (n = 162)</td>
+<td style="text-align: left; width: 3.5cm;">23 (14.2%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Have you had to stay in a hostile housing environment or abusive relationship because you had no other place to live? (n = 167)</td>
+<td style="text-align: left; width: 3.5cm;">18 (10.8%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Have you been asked to leave your home by someone you lived with? (n = 171)</td>
+<td style="text-align: left; width: 3.5cm;">12 (7.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Have you been evicted? (n = 173)</td>
+<td style="text-align: left; width: 3.5cm;">2 (1.2%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>Survey Questions are indicated in the table.</em></p>
+<p><strong>Additional Notes: </strong> These eight questions are used to screen for housing insecurity.</p>
+<p><strong>Summary:</strong> A total of 45 (27.8%) students reported that there was a rent or mortgage increase that made it difficult to pay rent, while 25 (15.1%) reported that they were either unable to pay or underpaid a utility bill. Additionally, 25 (15.1%) students reported that they have payed their rent/mortgage late.</p>
+<p><br></p>
+</section>
+<section id="Sleeping" class="level2">
+<h2 data-anchor-id="Sleeping">Sleeping Locations</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 4.3. Sleeping Locations. </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Location:</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Last 30 days</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">In the past 12 months</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Not Applicable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; width: 8cm;">Campus or University Housing (n = 171)</td>
+<td style="text-align: center;">65 (38.0%)</td>
+<td style="text-align: center;">50 (29.2%)</td>
+<td style="text-align: center;">78 (45.6%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8cm;">In a rented or owned house, mobile home, or apartment with my family (parent, guardian, relative or caretaker) (n = 169)</td>
+<td style="text-align: center;">65 (38.5%)</td>
+<td style="text-align: center;">64 (37.9%)</td>
+<td style="text-align: center;">66 (39.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8cm;">In a rented or owned house, mobile home, or apartment (alone or with roommates or friends) (n = 169)</td>
+<td style="text-align: center;">52 (30.8%)</td>
+<td style="text-align: center;">47 (27.8%)</td>
+<td style="text-align: center;">88 (52.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8cm;">Temporarily staying with a relative, friend or couch surfing until I find other housing (n = 167)</td>
+<td style="text-align: center;">4 (2.4%)</td>
+<td style="text-align: center;">13 (7.8%)</td>
+<td style="text-align: center;">150 (89.8%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8cm;">Temporarily at a hotel or motel without a permanent home to return to (not on vacation or business travel) (n = 168)</td>
+<td style="text-align: center;">2 (1.2%)</td>
+<td style="text-align: center;">3 (1.8%)</td>
+<td style="text-align: center;">163 (97.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8cm;">Sorority/Fraternity house (n = 170)</td>
+<td style="text-align: center;">1 (0.6%)</td>
+<td style="text-align: center;">4 (2.4%)</td>
+<td style="text-align: center;">165 (97.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8cm;">At a shelter (n = 169)</td>
+<td style="text-align: center;">1 (0.6%)</td>
+<td style="text-align: center;">0 (0.0%)</td>
+<td style="text-align: center;">168 (99.4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8cm;">In a transitional housing or independent living program (n = 168)</td>
+<td style="text-align: center;">1 (0.6%)</td>
+<td style="text-align: center;">0 (0.0%)</td>
+<td style="text-align: center;">167 (99.4%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8cm;">Outdoor location such as street, sidewalk, alley, park, etc. (n = 170)</td>
+<td style="text-align: center;">1 (0.6%)</td>
+<td style="text-align: center;">0 (0.0%)</td>
+<td style="text-align: center;">169 (99.4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8cm;">In a car, truck, van, RV or camper (n = 170)</td>
+<td style="text-align: center;">1 (0.6%)</td>
+<td style="text-align: center;">4 (2.4%)</td>
+<td style="text-align: center;">165 (97.1%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; width: 8cm;">In a closed area/space with a roof not meant for human habitation such as an abandoned building, garage, tent, etc. (n = 170)</td>
+<td style="text-align: center;">1 (0.6%)</td>
+<td style="text-align: center;">0 (0.0%)</td>
+<td style="text-align: center;">169 (99.4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; width: 8cm;">At a group home such as halfway house or residential program for mental health or substance abuse (n = 169)</td>
+<td style="text-align: center;">0 (0.0%)</td>
+<td style="text-align: center;">1 (0.6%)</td>
+<td style="text-align: center;">168 (99.4%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>In the last 30 days, or in the past 12 months, have you slept in any of the following places? (Select all that apply)</em></p>
+<p><strong>Additional Notes: </strong> The n count next to each question represents the number of students reporting out of 2,111 students. As a reminder, students had the option to select multiple options for each question.</p>
+<p><strong>Summary: </strong> In the past 12 months, 64 (37.9%) students reported sleeping in a rented/owned property with family, while 47 (27.8%) reported sleeping in a rented/owned property alone or with roommates. Additionally, in the past 12 months, 13 (7.8%) reported temporarily staying with a relative, friend or couch surfing until they find other housing, while 4 (2.4%) reported sleeping in a car, truck, van, RV or camper.</p>
+<p><br></p>
+</section>
+<section id="housing-insecurity-homelessness" class="level2">
+<h2 data-anchor-id="housing-insecurity-homelessness">Housing Insecurity &amp; Homelessness</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 4.4. Housing Insecurity &amp; Homelessness. </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Classification:</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yes (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Homeless in the past 12 months (n = 169)</td>
+<td style="text-align: left;">24 (14.2%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Housing Insecure (n = 160)</td>
+<td style="text-align: left;">19 (11.9%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Homeless in the past 30 days (n = 169)</td>
+<td style="text-align: left;">8 (4.7%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>These variables were derived from the questions in the <a href="#In_Past_12_Months">Past 12 Months</a> section and from the <a href="#Sleeping">Sleeping Locations</a> section.</em></p>
+<p><strong>Additional Notes:</strong></p>
+<ul>
+<li>Housing insecurity was measured using an eight-item scale that included the six items previously used by the <a href="#Footnotes">Hope Lab<sup>1</sup></a>, and two additional questions that were added after consultation with local stakeholders.
+<ul>
+<li>Students who answered “Yes” to 3 or more questions from the <a href="#In_Past_12_Months">In Past 12 Months</a> section were deemed housing insecure.</li>
+</ul></li>
+<li>Homelessness was determined using 9 indicators of homelessness described by the <a href="#Footnotes">Researching Basic Needs in Higher Education Report<sup>2</sup></a>. The survey questions measure indicators of homelessness in the last 30 days and 12 months based on the definitions of homelessness used by the U.S. Housing and Urban Development (HUD) and the U.S. Department of Education.
+<ul>
+<li>From the <a href="#Sleeping">Sleeping Locations</a> section, students who reported sleeping in any of the following places in the past 12 months or 30 days were deemed as homeless: <em>“At a shelter,” “Temporarily staying with a relative, friend or couch surfing until I find other housing,” “Temporarily at a hotel or motel without a permanent home to return to (not on vacation or business travel),” “In a transitional housing or independent living program,” “At a group home such as halfway house or residential program for mental health or substance abuse,” “Outdoor location such as street, sidewalk, alley, park, etc.,” “In a car, truck, van, RV or camper,” and/or “In a closed area/space with a roof not meant for human habitation such as an abandoned building, garage, tent, etc.”</em></li>
+</ul></li>
+</ul>
+<p><strong>Summary:</strong> A total of 19 (11.9%) were deemed as housing insecure, while 8 (4.7%) were deemed as homeless within the past month, and 24 (14.2%) were deemed as homeless within the past year of taking the survey.</p>
+<p><br></p>
+</section>
+<section id="housing-barriers" class="level2">
+<h2 data-anchor-id="housing-barriers">Housing Barriers</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 4.5. Housing Barriers (n=173, 95% of 182 reporting). </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Housing Barriers:</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yes (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I have not experienced barriers related to accessing housing (n = 173)</td>
+<td style="text-align: left;">116 (67.1%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lack of deposit funds (n = 173)</td>
+<td style="text-align: left;">27 (15.6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lack of employment (n = 173)</td>
+<td style="text-align: left;">27 (15.6%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lack first/last month's rent (n = 173)</td>
+<td style="text-align: left;">25 (14.5%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lack of co-signer (n = 173)</td>
+<td style="text-align: left;">15 (8.7%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Low/lack of credit score (n = 173)</td>
+<td style="text-align: left;">13 (7.5%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Other (n = 173)</td>
+<td style="text-align: left;">11 (6.4%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eviction on record (n = 173)</td>
+<td style="text-align: left;">0 (0.0%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>In the past 12 months, what barriers have you experienced in accessing housing? (Select all that apply)</em></p>
+<p><strong>Summary: </strong> A total of 116 (67.1%) students reported not experiencing any barriers to accessing housing, while 27 (15.6%) reported having a lack of deposit funds, and 27 (15.6%) reported a lack of employment as a barrier.</p>
+<p><br></p>
+</section>
+<section id="unstable-housing" class="level2">
+<h2 data-anchor-id="unstable-housing">Unstable Housing</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Housing_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="432"></p>
+<figcaption class="figure-caption">Figure 4.2. Number of Times Moved in the Past 12 months (n=172, 95% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>In the past 12 months, how many times have you moved?</em></p>
+<p><strong>Summary:</strong> A total of 53 (30.8%) students reported never moving in the past 12 months, while 87 (50.6%) reported moving once, and 24 (14.0%) reported moving twice. There were 8 (4.7%) students who reported moving three or more times in the past 12 months.</p>
+<hr>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Housing_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="432"></p>
+<figcaption class="figure-caption">Figure 4.3. Sleeping Location Uncertainty (n=169, 93% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>In the past 12 months, how many times have you been unsure of where you were going to sleep at night?</em></p>
+<p><strong>Summary: </strong> A total of 138 (81.7%) students reported never being unsure of where they are going to sleep in the past 12 months, while 13 (7.7%) were unsure on one occasion, 8 (4.7%) were unsure on two occasions, and 10 (5.9%), were unsure on three or more occasions.</p>
+<hr>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Housing_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption class="figure-caption">Figure 4.4. Most Common Reason for Experiencing Unstable Housing (n=169, 93% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>In the past 12 months, if you have experienced unstable housing, what was the most common reason?</em></p>
+<p><strong>Summary:</strong> A total of 116 (68.6%) reported that this question was not applicable, while 24 (14.2%) reported they did not have enough money to cover housing expenses, and 12 (7.1%) reported that they had a conflict with someone they were living with.</p>
+<p><br></p>
+</section>
+<section id="COVID_Housing_Impact" class="level2">
+<h2 data-anchor-id="COVID_Housing_Impact">COVID Housing Impact</h2>
+<div class="row">
+<div class="col-md-6">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Housing_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="384"></p>
+<figcaption class="figure-caption">Figure 4.5. COVID Housing Impact (n=166, 91% of 182 reporting).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-5">
+<p><strong>Survey Question:</strong> <em>Has your housing stability changed due to COVID-19? (e.g.&nbsp;you are now homeless, you are now sleeping on my friend’s couch, you are unable to access campus housing, etc.).</em></p>
+<p><strong>Summary:</strong> A total of 9 (5.4%) students reported that their housing stability changed due to COVID, while 157 (94.6%) reported that their housing stability did not change.</p>
+</div>
+</div>
+<hr>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="table table-striped table-sm small" data-quarto-postprocess="true">
+<caption>Table 4.6. Reported Reasons for a Change in Housing Stability From COVID (n=8, 4% of 182 reporting). </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Reason:</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Yes (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I was unable to access on-campus housing (n = 8)</td>
+<td style="text-align: left;">3 (37.5%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Finances changed due to lost (or reduced) on-campus job (n = 8)</td>
+<td style="text-align: left;">2 (25.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finances changed due to lost (or reduced) off-campus job (n = 8)</td>
+<td style="text-align: left;">2 (25.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">I was unable to access off-campus housing (n = 8)</td>
+<td style="text-align: left;">2 (25.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I was in unsafe housing (n = 8)</td>
+<td style="text-align: left;">1 (12.5%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Other (n = 8)</td>
+<td style="text-align: left;">1 (12.5%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">My roommate's finances changed (n = 8)</td>
+<td style="text-align: left;">0 (0.0%)</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p><strong>Survey Question:</strong> <em>If yes, why did your housing stability change due to COVID-19? (Select all that apply)</em></p>
+<p><strong>Additional Notes:</strong> This question was shown only to those who answered “Yes” in the <a href="#COVID_Housing_Impact">COVID Housing Impact</a> section.</p>
+<p><strong>Summary:</strong> Of those who reported a change in housing stability from the <a href="#COVID_Housing_Impact">COVID Housing Impact</a> section, 2 (25.0%) students reported that the reason for the change in their housing stability was because their finances changed due to a lost (or reduced) OFF-campus job, while 2 (25.0%) reported their finances changed due to a lost (or reduced) ON-campus job. Additionally, 1 (12.5%) reported that they were in unsafe housing, and 0 (0.0%) reported that their roommate’s finances had changed.</p>
+<p><br></p>
+<hr>
+</section>
+<section id="Footnotes" class="level1">
+<h1>Footnotes:</h1>
+<ol type="1">
+<li><a href="https://www.bhcc.edu/media/03-documents/voicesofhunger/Wisconsin-HOPE-Lab-Still-Hungry-and-Homeless-April-2018.pdf">Hope Lab Housing Insecurity Assessment</a></li>
+<li><a href="https://www.calstate.edu/impact-of-the-csu/student-success/basic-needs-initiative/Documents/researching-basic-needs.pdf#page=31">Researching Basic Needs in Higher Education Report</a></li>
+</ol>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:10%;">
+
+</div><div class="column" style="width:80%;">
+<div style="text-align: center;">
+<p><img src="bns_statewide_logo_array.svg" alt="CHC Logo" width="auto" height="auto"></p>
+</div>
+</div><div class="column" style="width:10%;">
+
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

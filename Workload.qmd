@@ -1,0 +1,248 @@
+---
+title: "Workload"
+format:
+  html:
+    anchor-sections: false
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+
+# Print the next figure number
+currentFigure <- 0
+NextFigure <- function() {
+  # Increment the figure number
+  currentFigure <<- currentFigure + 1
+  
+      # -------- Set figure and section number --------
+  paste("Figure 3.", currentFigure, ".", sep = "")
+}
+
+# Print the next Table number
+currentTable <- 0
+NextTable <- function() {
+  # Increment the table number
+  currentTable <<- currentTable + 1
+  
+      # -------- Set Table and section number --------
+  paste("Table 3.", currentTable, ".", sep = "")
+}
+
+
+
+tmp2 <- data.frame(bns, q18=bns$q18, paid_work_hours=bns$paid_work_hours, unpaid_work_hours=bns$unpaid_work_hours, school=bns$school)
+tmp2$units <- tmp2$q18*3
+tmp2$NonAcademic <- ifelse(is.na(tmp2[,'paid_work_hours']) | is.na(tmp2[,"unpaid_work_hours"]) | is.na(tmp2[,"caregiving_hours"]), NA,  rowSums(tmp2[, c('paid_work_hours','unpaid_work_hours', 'caregiving_hours')], na.rm = TRUE))
+tmp2$TotalHours <- ifelse(is.na(tmp2[, 'units']) | is.na(tmp2[,'NonAcademic']), NA,  rowSums(tmp2[, c('units','NonAcademic')], na.rm = TRUE))
+bns$NonAcademic <- tmp2$NonAcademic
+bns$TotalHours <- tmp2$TotalHours
+
+```
+
+Students were asked to report information regarding their workload. This includes work from both paid/unpaid jobs, academic work, as well as time spent caregiving for any family members.
+
+*As a reminder, students had the option to select "Prefer not to answer" for all questions, and these responses were set as missing values. In addition, `r get_count_and_percent(bns$finished, 'FALSE')` students did not finish the survey. The n reporting refers to the total number of non-missing responses, while the percent reporting reflects the percent of non-missing responses.*
+
+## Weekly Paid Work Hours
+
+```{r}
+#| fig-cap: !expr sprintf("%s Weekly Paid Work Hours %s.", NextFigure(), print_n_reporting('paid_work_hours'))
+
+gghistogram(bns, x = "paid_work_hours", add = "mean", fill = plot_color, alpha = 1) + 
+  xlab("Paid Hours Per Week") + ylab("Number of Students")
+```
+
+**Survey Question:** *Estimate the number of hours you work in a PAID job (e.g. server at a restaurant, office assistant, etc.) or paid internship (e.g. training, shadowing, or practicum) per week.*
+
+**Summary:** Students reported a wide range of paid work hours per week with an average of `r round(mean(bns$paid_work_hours, na.rm = TRUE), digits = 2)` hours (denoted by the dotted line) and a median of `r median(bns$paid_work_hours, na.rm = TRUE)`. The majority of students worked either part-time or not at all. Only `r get_count_and_percent3(bns$paid_work_hours, 40)` students were considered to be working full-time (40 or more hours per week).
+
+
+<br>
+
+## Impact of COVID
+
+```{r}
+#| fig-width: 8
+#| fig-cap: !expr sprintf("%s Impact of COVID %s.", NextFigure(), print_n_reporting('q20'))
+plot_frq(bns$q20, geom.colors = plot_color, ylim=c(0,700), wrap.labels = 19, sort.frq = 'desc') + xlab('') + ylab("Number of Students")
+
+```
+
+
+**Survey Question:** *Have the hours you work in a PAID job or internship changed due to COVID-19?*
+
+**Summary:** A total of `r get_count_and_percent(bns$q20, 'I did not have a job or internship before COVID-19 and I still do not.')` students reported not working prior to COVID while, `r get_count_and_percent(bns$q20, 'No, my hours have remained the same.')` reported that their hours have not changed due to COVID. There were `r get_count_and_percent(bns$q20, 'Yes, my hours have decreased but I still have a job.')` students that had their hours decreased, `r get_count_and_percent(bns$q20, 'Yes, I no longer have my job/internship.')` that no longer had a job/internship, and `r get_count_and_percent(bns$q20, 'Yes, my hours have increased and I still have a job or I have a new job.')` that had their hours increased. 
+
+
+<br>
+
+## Unpaid Work Hours
+
+```{r}
+#| fig-cap: !expr sprintf("%s Unpaid Work Hours %s.", NextFigure(), print_n_reporting('unpaid_work_hours'))
+
+gghistogram(bns, x = "unpaid_work_hours", add = "mean", fill = plot_color, alpha = 1) + 
+  xlab("Unpaid Hours Per Week") + ylab("Number of Students")
+```
+
+**Survey Question:** *Estimate the number of hours you work in an UNPAID internship (e.g. training, shadowing, practicum, and/or volunteer, etc.) per week. Do not combine with answers above.*
+
+**Summary:** The average number of unpaid work hours was `r round(mean(bns$unpaid_work_hours, na.rm = TRUE),1)` (denoted by the dotted line) and the median was `r median(bns$unpaid_work_hours, na.rm = TRUE)`. A total of `r get_count_and_percent(bns$unpaid_work_hours, 0)` students did not work at an unpaid job/internship, while `r get_count_and_percent3(bns$unpaid_work_hours, 10)` students reported working 10 or more unpaid hours every week. 
+
+<br>
+
+
+
+## Unpaid Caregiving Hours
+
+```{r}
+#| fig-cap: !expr sprintf("%s Unpaid Caregiving Hours %s.", NextFigure(), print_n_reporting('caregiving_hours'))
+
+
+# Used for denominator in text for calculations
+tmp <- bns %>% select(caregiving_hours) %>% filter(!is.na(caregiving_hours))
+
+bns$bin <- ifelse(bns$caregiving_hours > 0, 1, 0)
+gghistogram(bns, x = "caregiving_hours", add = "mean", fill = plot_color, alpha = 1) + 
+  xlab("Caregiving Hours") + ylab("Number of Students")
+```
+
+**Survey Question:** *Estimate the number of hours you spend each week on UNPAID family obligations (e.g. taking care of younger siblings, preparing family meals, running errands for the family, etc.) per week.*
+
+**Summary:** A total of `r get_count_and_percent(bns$bin, 1)` students spent time each week caring for family members with an average of `r round(mean(bns$caregiving_hours, na.rm = TRUE), digits = 2)` hours (denoted by the dotted line) and a median of `r median(bns$caregiving_hours, na.rm = TRUE)`. There were `r get_count_and_percent(bns$caregiving_hours, "0")` students that reported spending zero hours per week on family obligations, while `r get_count_and_percent3(bns$caregiving_hours, 40)` reported spending 40 or more hours each week. 
+
+
+<br>
+
+## Academic Workload
+
+```{r}
+#| fig-cap: !expr sprintf("%s Academic Workload %s.", NextFigure(), print_n_reporting('q18'))
+gghistogram(tmp2, x = "units", add = "mean", fill = plot_color, alpha = 1) + 
+  xlab("Academic Hours Per Week") + ylab("Number of Students")
+```
+
+**Survey Question:** *How many units are you currently taking?*
+
+**Additional Notes:** The hours of academic work per week were estimated by assuming 3 hours of work per unit. 
+
+**Summary:** The average number of academic hours worked per week was `r round(mean(tmp2$units, na.rm = TRUE), 1)` hours (denoted by the dotted line), while the median was `r median(tmp2$units, na.rm = TRUE)`. A total of `r get_count_and_percent3(tmp2$units, 40)` students spent 40 or more hours per week on academic work.
+
+<br />
+
+## Non-Academic Workload
+
+```{r}
+#| fig-cap: !expr sprintf("%s Non-Academic Workload %s.", NextFigure(), print_n_reporting('NonAcademic'))
+gghistogram(tmp2, x = "NonAcademic", add = "mean", fill = plot_color, alpha = 1) + 
+  xlab("Non-Academic Hours Per Week") + ylab("Number of Students")
+```
+
+**Survey Question:** *This variable was derived by taking the sum of students' paid work hours, unpaid work hours, and caregiving hours.*
+
+**Additional Notes:**  Total workload was calculated only for students who reported their paid work hours, unpaid work hours, and caregiving hours. 
+
+
+**Summary:** The average total number of hours worked per week in non-academic matters was `r round(mean(tmp2$NonAcademic, na.rm = TRUE), 2)` hours (denoted by the dotted line), while the median was `r median(tmp2$NonAcademic, na.rm = TRUE)` hours. A total of `r get_count_and_percent3(tmp2$NonAcademic, 40)` students spent 40 or more hours per week on non-academic work. 
+
+
+<br />
+
+## Total Workload
+
+```{r}
+tmp <- tmp2 %>% filter(TotalHours > 0)
+```
+
+
+```{r}
+#| fig-cap: !expr sprintf("%s Total Workload %s.", NextFigure(), print_n_reporting('TotalHours'))
+gghistogram(tmp2, x = "TotalHours", add = "mean", fill = plot_color, alpha = 1) + 
+  xlab("Total Hours Per Week") + ylab("Number of Students")
+```
+
+**Survey Question:** *This variable was derived by taking the sum of students' paid work hours, unpaid work hours, caregiving hours, and hours spent from academic activities (assuming 3 hours per unit taken).*
+
+
+**Additional Notes:** Total workload was calculated only for students who reported their paid work hours, unpaid work hours, caregiving hours, and units. 
+
+
+**Summary:** The average number of total hours worked per week was `r round(mean(tmp2$TotalHours, na.rm = TRUE), 2)` hours (denoted by the dotted line), while the median was `r median(tmp2$TotalHours, na.rm = TRUE)` hours. A total of `r get_count_and_percent3(tmp2$TotalHours, 40)` students spent 40 or more hours per week on academic and non-academic work, while `r get_count_and_percent3(tmp2$TotalHours, 80)` spent 80 or more hours. 
+
+
+```{r}
+## | label: fig-student-hours
+## | fig-cap: CalFresh Eligibility
+# 
+
+# 
+# ## CalFresh Workload
+# 
+# People are required to meet a certain work criteria in order to receive CalFresh benefits. All able-bodied adults are required to work a minimum of 80 hours per month, which can be broken down into roughly 20 hours per week. This can be either paid or unpaid work, and more information on this requirement can be found on the [Department of Social Services](https://www.cdss.ca.gov/inforesources/calfresh/abawd#:~:text=People%20who%20are%20ABAWDs%20must,%2C%20and%20in%2Dkind%20work.) website. If you are an student, you may be enrolled in at least 6 academic units or more (equivalent to 18+ hours per week of academic workload) rather than having a paid/unpaid job. For more information on student eligibility, see the [College Student Eligibility](https://www.csuchico.edu/calfresh/basics/college-student-eligibility.shtml) requirements on Chico State's website.
+# 
+# The below graphs breaks down if a person meets the workload requirements based solely on one of the following criteria:
+# 
+# -   Academic workload - enrolled in 6 or more units (18 or more hours).
+# -   Paid Workload - working 20+ weekly hours at a paid position.
+# -   Unpaid Workload - working 20+ weekly hours at a unpaid position.
+# -   Total Workload - working 20+ weekly hours in total (combination of academic, paid, and unpaid).
+# 
+# *Note: people with a workload of 0 hours were included in the graph and analysis.*
+# 
+# tmp <- tmp2
+# tmp <- tmp %>% mutate(student=factor(ifelse(is.na(q18), NA, 
+#                                             ifelse(q18 >= 6, "Eligible", "Not Eligible")),
+#                                      levels=c("Not Eligible", "Eligible")),
+#                       paid=factor(ifelse(is.na(paid_work_hours), NA, 
+#                                          ifelse(paid_work_hours >= 20, "Eligible", "Not Eligible"))
+#                                   , levels=c("Not Eligible", "Eligible")),
+#                       unpaid=factor(ifelse(is.na(unpaid_work_hours), NA, 
+#                                            ifelse(unpaid_work_hours >= 20, "Eligible", "Not Eligible")),
+#                                     levels=c("Not Eligible", "Eligible")),
+#                       total=factor(ifelse(is.na(TotalHours), NA, 
+#                                           ifelse(TotalHours >= 20, "Eligible", "Not Eligible")), 
+#                                    levels=c("Not Eligible", "Eligible"))) %>%
+#   select(student, paid, unpaid, total)
+# 
+# names(tmp) <- c("Academic Workload", "Paid Workload", "Unpaid Workload", "Total Workload")
+# 
+# plot_likert(tmp,
+#             grid.range = c(1.4, 1.4),
+#             wrap.legend.labels = 20,
+#             expand.grid = FALSE,
+#             values = "sum.outside",
+#             catcount = 2,
+#             geom.colors = c("#D8B365","#5AB4AC"),
+#             show.prc.sign = TRUE, reverse.scale = TRUE) + theme_bw() + theme(legend.position = "top")
+```
+
+
+
+<br />
+
+
+:::: {.columns}
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="80%"}
+<div style="text-align: center;">
+
+<img src="bns_statewide_logo_array.svg" alt="CHC Logo" width="auto" height="auto">
+
+</div>
+:::
+
+::: {.column width="10%"}
+
+
+:::
+
+::::
+
+
+
+
+

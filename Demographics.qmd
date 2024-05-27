@@ -1,0 +1,278 @@
+---
+title: "Demographics"
+format:
+  html:
+    anchor-sections: false
+---
+
+```{r, include=FALSE}
+source("common_code.R")
+
+# Print the next figure number
+currentFigure <- 0
+NextFigure <- function() {
+  # Increment the figure number
+  currentFigure <<- currentFigure + 1
+  
+      # -------- Set figure and section number --------
+  paste("Figure 1.", currentFigure, ".", sep = "")
+}
+
+# Print the next Table number
+currentTable <- 0
+NextTable <- function() {
+  # Increment the table number
+  currentTable <<- currentTable + 1
+  
+      # -------- Set Table and section number --------
+  paste("Table 1.", currentTable, ".", sep = "")
+}
+```
+
+Students were asked to report information relating to their personal demographics such as age, gender identity, race/ethnicity, number of dependents (if any), and their parents' education level. 
+
+*As a reminder, students had the option to select "Prefer not to answer" for all questions, and these responses were set as missing values. In addition, `r get_count_and_percent(bns$finished, 'FALSE')` students did not finish the survey. The n reporting refers to the total number of non-missing responses, while the percent reporting reflects the percent of non-missing responses.*
+
+
+## Age
+
+
+```{r}
+#| fig-cap: !expr sprintf("%s Reported Age %s.", NextFigure(), print_n_reporting('age'))  
+gghistogram(bns, x = "age", add = "mean", alpha = 1, 
+            fill = plot_color) + 
+  xlab("Age (years)") + ylab("Number of Students")
+```
+
+**Survey Question: ** *What is your date of birth?*
+
+**Additional Notes: ** Student age was determined by the difference between birth date and the time in which the survey was completed. Values were rounded down to the nearest whole number. 
+
+**Summary: ** The average age of the students was `r round(mean(bns$age, na.rm = TRUE),1)` years with a range of `r min(bns$age, na.rm = TRUE)` to `r max(bns$age, na.rm = TRUE)` and the majority falling between 20-30 years old. A total of `r get_count_and_percent3(bns$age, 21)` students were 21 or older, and `r get_count_and_percent3(bns$age, 30)` students were 30 or older. 
+
+<br>
+
+## Gender Identity
+
+<div class = "row">
+
+::: col-md-7
+```{r}
+#| fig-height: 3.5
+#| fig-width: 7
+#| fig-cap: !expr sprintf("%s Gender Identity %s.", NextFigure(), print_n_reporting('q7'))  
+
+rec <- bns %>% mutate(q7=recode(q7, "Gender non-binary"="Non-binary", "Gender Queer or Gender-Nonconforming" = "Queer or Nonconforming", "Gender Unlisted:" = "Unlisted"))
+
+
+plot_frq(rec$q7, sort.frq="desc", geom.colors = plot_color) + xlab('Gender') + ylab("Number of Students")
+#Should we cut "Gender" from the 3 categories on the right? Exp. "Non-binary" instead of "Gender non-binary"
+```
+:::
+
+**Survey question: ** *What is your gender identity?*
+
+**Summary: ** A total of `r get_count_and_percent(bns$q7, 'Woman')` students identified as a woman, `r get_count_and_percent(bns$q7, 'Man')` identified as a man, `r get_count_and_percent(bns$q7, 'Gender non-binary')` identified as gender non-binary, and `r get_count_and_percent(bns$q7, 'Gender Queer or Gender-Nonconforming')` identified as queer/non-conforming.
+
+
+<br>
+
+## Ethnicity (i.e. Identifying with Hispanic Origin)
+
+::: row
+::: col-md-6
+```{r}
+#| fig-height: 3
+#| fig-width: 4
+#| fig-cap: !expr sprintf("%s Ethnic/Hispanic Identity %s.", NextFigure(), print_n_reporting_tmp('hispanic'))
+tmp <- data.frame(q8=bns$q8) %>% mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Hispanic", "Non-Hispanic")))) %>% select(-q8)
+
+plot_frq(tmp$hispanic, geom.colors = plot_color, ylim=c(0, 1800)) + xlab("") + ylab("Number of Students")
+```
+:::
+
+::: col-md-5
+**Survey Question: ** *Do you identify as Hispanic or Latino or Spanish Origin?*
+
+**Additional Notes: ** Possible answers were pulled from the U.S. Census questionnaire assessing Hispanic Origin: *Mexican; Mexican American; Chicano; Puerto Rican; Cuban; another Hispanic/Latino/Spanish origin; or not of Hispanic/Latino/Spanish origin.* 
+
+**Summary: ** A total of `r get_count_and_percent(tmp$hispanic, 'Hispanic')` students self-identified as having Hispanic Origins and `r get_count_and_percent(tmp$hispanic, 'Non-Hispanic')` students self-identified as Non-Hispanic. 
+:::
+:::
+
+
+```{r}
+tmp <- data.frame(q8=bns$q8, school=bns$school) %>% 
+  mutate(hispanic=as.factor(ifelse(is.na(q8), NA, ifelse(grepl("Yes", q8), "Yes", "No"))),
+         school=ifelse(is.na(hispanic), NA, school)) %>% select(-q8)
+```
+
+<br>
+
+## Race
+
+```{r}
+
+tmp <-
+  bns %>% select(starts_with("eth_")) %>% mutate(
+    white = ifelse(is.na(eth_white), NA, ifelse(eth_white == 1, 1, 0)),
+    black = ifelse(is.na(eth_african_amer), NA, ifelse(eth_african_amer == 1, 1, 0)),
+    amer_indian = ifelse(is.na(eth_amer_indian), NA, ifelse(eth_amer_indian == 1, 1, 0)),
+    asian = ifelse((
+      is.na(eth_chinese) | is.na(eth_filipino) | is.na(eth_asian_indian) |
+        is.na(eth_other_asian) |
+        is.na(eth_vietnamese) | is.na(eth_korean) |
+        is.na(eth_japanese)
+    ),
+    NA,
+    ifelse((
+      eth_chinese == 1 | eth_filipino == 1 | eth_asian_indian  == 1 |
+        eth_other_asian == 1 |
+        eth_vietnamese == 1 | eth_korean == 1 |
+        eth_japanese == 1),1,0)
+    ),
+    hawaiian = ifelse((
+      is.na(eth_pacific_islander) |
+        is.na(eth_chamorro) | is.na(eth_hawaiian) |
+        is.na(eth_samoan)
+    ), NA,
+    ifelse((
+      eth_pacific_islander == 1 | eth_chamorro == 1 | eth_hawaiian == 1 |
+        eth_samoan == 1
+    ),
+    1,
+    0
+    ))
+  ) %>% select(15, 17:21)
+
+
+```
+
+
+```{r}
+#| tbl-cap: !expr sprintf("%s Reported Race %s.", NextTable(), print_n_reporting_tmp('white'))
+
+tmp %>% na.omit() %>% 
+  summarize(across(everything(), sum)) %>%
+  pivot_longer(cols = everything()) %>%
+  mutate(`Identified Race` = c("Prefer not to answer race", "White", "Black or African American", 
+                  "American Indian and Alaska Native", "Asian", 
+                  "Native Hawaiian and Other Pacific Islander"), 
+         pct = percent(value/nrow(tmp), accuracy=0.1), 
+         `Yes (%)`=paste0(value, " (", pct, ")")) %>%
+  arrange(desc(value)) %>%
+  select(-c(name, value, pct)) %>% 
+  kable() %>% kable_styling(bootstrap_options = "striped")
+```
+
+**Survey Question: ** *What race do you identify as? (Select all that apply)*
+
+**Additional Notes: ** Possible answers were pulled from the U.S. Census questionnaire assessing race: *White, Black or African American, American Indian or Alaska Native, Chinese, Filipino, Asian Indian, Vietnamese, Korean, Japanese, Other Asian, Native Hawaiian, Samoan, Chamorro, and Other Pacific Islander.* These 14 options were collapsed into the 5 broad U.S. Census groups due to small sample sizes in some groups.
+
+**Summary: ** A total of `r get_count_and_percent(tmp$white, '1')` students self-identified as White, `r get_count_and_percent(tmp$asian, '1')` as Asian, `r get_count_and_percent(tmp$black, '1')` as Black or African American, `r get_count_and_percent(tmp$amer_indian, '1')` as American Indian or Alaskan Native, and `r get_count_and_percent(tmp$hawaiian, '1')` as Native Hawaiian or Other Pacific Islander. Additionally, `r get_count_and_percent(tmp$eth_PNTA, '1')` students preferred not to answer race, likely due to confusion between race and ethnicity. 
+
+
+<br>
+
+## Dependents
+
+```{r}
+tmp <- bns %>% filter(q11>0, q11 < 9) # drop 0 and "i don't have dependent' responses. 
+
+
+```
+
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| fig-cap: !expr sprintf("%s Reported Number of Dependents %s.", NextFigure(), print_n_reporting('q11'))
+plot_frq(tmp$q11, geom.colors = plot_color,) + xlab('Number of Dependents') + ylab("Number of Students")
+```
+
+**Survey Question: ** *If you have dependents, then how many of them receive more than 50% of their financial support from you?*
+
+**Additional Notes: ** A total of `r get_count_and_percent(bns$q11, "I don't have dependents")` students reporting no dependents and `r get_count_and_percent(bns$q11, "0")` reporting dependents with less than 50% financial support were omitted from the chart. 
+
+
+**Summary: ** A total of `r sum(table(tmp$q11))` students reported having dependents who receive more than 50% of their financial support. Of those with dependents, `r get_count_and_percent(tmp$q11, '1')` had one dependent, `r get_count_and_percent(tmp$q11, '2')` had two, and `r get_count_and_percent3(tmp$q11, '3')` students had 3 or more dependents.
+
+<br>
+
+## Parent Education {#Parent_Education}
+
+
+```{r}
+#| fig-height: 5
+#| fig-width: 7.5
+#| fig-cap: !expr sprintf("%s Parent/Guardian Education Level Reported by College Students %s.", NextFigure(), print_n_reporting('q13'))
+tmp2 <- as.data.frame(table(bns$q13)) %>%
+  mutate(Percent=lapply(Freq, function(x) paste0('(', percent(x/sum(!is.na(bns[['q13']])), accuracy = 0.1), ')')),
+         FirstGen=as.character(c(1,1,1,1,1,0,0,0,2)),
+         Var1=recode(Var1, "Other/Unknown" = "Other/ Unknown")) %>% arrange((desc(Freq)))
+
+ggplot(tmp2, aes(x=factor(Var1, levels=Var1), y=Freq, fill=FirstGen, label=Percent)) + geom_col(colour = "black") +
+  scale_fill_manual(values=c("#336699", "#00944d", "grey")) + geom_text(aes(y=Freq+50)) + ylim(0,900) +
+  scale_x_discrete(labels=label_wrap(10)) +   geom_text(aes(y=Freq + 100, label=Freq)) +
+  xlab('') + ylab("Number of Students") + theme(legend.position = "none") + theme(axis.text.x = element_text(size = 10))
+```
+
+**Survey Question: ** *What is the highest level of education completed by your parents/guardians (for example, if your mother and father both raised you, and your mother has the highest level of education, then indicate her highest level of education)?*
+
+**Additional Notes: ** This data is used to determine a student’s first-generation status. First-generation status is defined by neither parent having completed a Bachelor’s degree or higher. The green bars represent first-generation categories and the blue bars represent non-first-generation categories. Other/unknown responses are shown in gray.
+
+**Summary: ** A total of `r get_count_and_percent(bns$firstgen, '1')` students reported first-generation status based on their parent/guardian education level. This outcome is not surprising because all students in this study were either enrolled in EOP or EOPS and both programs recruit students with first-generation status. A total of `r count_and_percent(bns$q13, "Less than high school")` students reported their parents/guardians did not have a high school diploma or GED, while `r count_and_percent(bns$q13, "High school diploma or GED")` reported the highest level of education completed by their parents was high school. 
+
+
+<br>
+
+## First-Generation
+
+::: row
+::: col-md-6
+```{r}
+#| fig-height: 3
+#| fig-width: 4
+#| fig-cap: !expr sprintf("%s First-Generation Students %s.", NextFigure(), print_n_reporting('firstgen'))
+tmp3 <- data.frame(firstgen=bns$firstgen) %>% 
+  mutate(firstgen=factor(ifelse(is.na(firstgen), NA, ifelse(firstgen == 0, "Not First Gen", "First Gen")), levels=c("Not First Gen", "First Gen")))
+
+plot_frq(tmp3$firstgen, geom.colors = plot_color, ylim=c(0, 2300)) + xlab('') + ylab("Number of Students")
+```
+:::
+
+::: col-md-5
+**Survey Question: ** *This variable was derived from the question in the [Parent Education](#Parent_Education) section.*
+
+**Additional Notes: ** Students who selected their parents' education  as "Less than high school," "High school diploma or GED," "Some college," "Certificate or technical achievement without Associate's degree," or "Associate's degree" were considered first-generation. The `r get_count_and_percent(bns$q13, 'Other/Unknown')` students who selected "Other/Unknown" were set as missing values. All other responses were considered not first-generation. 
+
+:::
+:::
+
+**Summary: ** A total of `r get_count_and_percent(bns$firstgen, '1')` students reported first-generation status. As stated above, this outcome is not surprising because students in this study were either enrolled in EOP or EOPS, and both programs recruit students with first-generation status.
+
+
+<br />
+
+
+:::: {.columns}
+
+::: {.column width="10%"}
+
+:::
+
+::: {.column width="80%"}
+<div style="text-align: center;">
+
+<img src="bns_statewide_logo_array.svg" alt="CHC Logo" width="auto" height="auto">
+
+</div>
+:::
+
+::: {.column width="10%"}
+
+
+:::
+
+::::
+

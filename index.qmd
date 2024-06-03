@@ -1,5 +1,6 @@
 ---
-title: "Basic Needs & Student Success"
+title: "Basic Needs & Student Success Survey"
+subtitle: "UC Berkeley Results"
 format:
   html:
     anchor-sections: false
@@ -11,42 +12,34 @@ library(maps)
 library(dplyr)
 library(ggplot2)
 
-# 1) Create Vector of Names of Schools
-Names <- c("Allan Hancock CC (n = 112)", "Butte CC (n = 132)" ,
-           "Mt. SAC CC (n = 270)", "Clovis CC (n = 140)", 
-           "Palo Verde CC (n = 36)",
-           "Cal State San Bernardino (n = 191)", 
-           "CSU Bakersfield (n = 114)", "Sacramento State (n = 253)",
-           "CSU Dominguez Hills (n = 58)", 
-           "San Francisco State (n = 279)", 
-           "Cal State LA (n = 343)", "UC Berkeley (n = 182)", NA)
-
-
-# 2) Set Lat (from Google Maps)
-Lat <- c(34.944806751448446, 39.64865964609286, 34.04908827552049, 36.8881247883413, 33.661194382241, 34.181456718923286, 35.3488035843719, 38.56494552780801, 33.862538254060354, 37.72428800979904, 34.0664952125493, 37.87032035949273, NA)
-
-# 3) Set Long (from Google Maps)
-Long <- c(-120.41904099310837, -121.6448880602949, -117.84283323764328,  -119.73237338219428,  -114.6528941759761,  -117.3231769109331, -119.1034047186511, -121.42779950825016,  -118.25447517782001, -122.48003539894094, -118.1684245606096,
-          -122.25952497759987, NA)
-
-# 4) Merge Vectors as data frame
-coord_data <- cbind(Names, Lat, Long) %>% as.data.frame()
-
-
-# 5) load California map as data set
-cali_map <- map_data("state") %>% filter(region == "california")
-
-
-# 6) Merge California map data and our school data
-map_and_data <- merge(cali_map, coord_data)
+# # 1) Create Vector of Names of Schools
+# Names <- c("UC Berkeley (n = 182)")
+# 
+# 
+# # 2) Set Lat (from Google Maps)
+# Lat <- c(37.87032035949273)
+# 
+# # 3) Set Long (from Google Maps)
+# Long <- c(-122.25952497759987)
+# 
+# # 4) Merge Vectors as data frame
+# coord_data <- cbind(Names, Lat, Long) %>% as.data.frame()
+# 
+# 
+# # 5) load California map as data set
+# cali_map <- map_data("state") %>% filter(region == "california")
+# 
+# 
+# # 6) Merge California map data and our school data
+# map_and_data <- merge(cali_map, coord_data)
 
 
 ```
 
 ## Overview
 
-- The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs and Student Success Survey (BNS3)** and administered it to undergraduate students participating in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) or the Extended Opportunity Programs and services (EOPS) at 12 colleges across the CSU, CCC and UC systems from 2022 to 2023.
-- This site provides a top level descriptive analysis of each question in the survey.
+- The [Center for Healthy Communities](https://www.csuchico.edu/chc/) (CHC) developed the **Basic Needs and Student Success Survey (BNS3)** and administered it to undergraduate students participating in the [Educational Opportunity Program (EOP)](https://www2.calstate.edu/attend/student-services/eop) or the Extended Opportunity Programs and Services (EOPS) at 12 colleges across the CSU, CCC, and UC systems from 2022 to 2023.
+- This site provides a top level descriptive analysis of each question in the survey for the **UC Berkeley Campus ONLY (n = `r nrow(bns)` students)**
 
 
 ## Purpose
@@ -63,37 +56,36 @@ The main purpose of this third cross-sectional study was to evaluate the followi
 ## Participants
 
 - EOP/EOPS offices assisted in the recruitment by emailing interest form links to their EOP/EOPS students. 
-- Students who met the eligibility criteria of being undergraduate EOP/EOPS students and receiving less than 11 meals per week from other services (used as an eligibility criteria when determining CalFresh Food eligibility) were then emailed a survey. 
+- Students who met the eligibility criteria of being undergraduate EOP/EOPS students and receiving less than 11 meals per week from other services (used as an eligibility criterion when determining CalFresh Food eligibility) were then emailed a survey.
 - Participants were given a \$25 gift card incentive for completing the survey. 
 - EOP/EOPS students were identified as the target population for this survey based on their low-income and first-generation student status, which indicates a higher probability of using CalFresh Food and being likely eligible for CalFresh Food.
+- A total of **`r nrow(bns)` EOP/EOPS students** were surveyed from the UC Berkeley campus.
 
-
-A total of 2,110 EOP/EOPS students in California were surveyed from the following campuses:
 
 ```{r, fig.width=6, fig.height=4}
 
 
-ggplot() + 
-  geom_polygon(data=map_and_data, aes(x=long, y=lat, group=group),
-                color="black", fill= CF_green) + 
-  geom_point(aes(Long, Lat)) +
-  ggrepel::geom_label_repel(aes(x = Long, 
-                      y = Lat, 
-                      label = Names), nudge_y  = 0.01, min.segment.length = 0) + 
-  theme_void() 
+# ggplot() + 
+#   geom_polygon(data=map_and_data, aes(x=long, y=lat, group=group),
+#                 color="black", fill= CF_green) + 
+#   geom_point(aes(Long, Lat)) +
+#   ggrepel::geom_label_repel(aes(x = Long, 
+#                       y = Lat, 
+#                       label = Names), nudge_y  = 0.01, min.segment.length = 0) + 
+#   theme_void() 
 
 ```
 
 
 
-**Disclaimer on Missing Data:** *Students had the option to select "Prefer not to answer" for all questions or options such as "I don't know" for a small subset of questions, and these responses were set as missing values. In addition, `r get_count_and_percent(bns$finished, 'FALSE')` students did not finish the survey. These two factors are the cause of missing data (i.e., not 100% of respondents reporting). In each table/figure, the n reporting refers to the total number of non-missing responses, while the percent reporting reflects the percent of non-missing responses.*
+**Disclaimer on Missing Data:** *Students had the option to select "Prefer not to answer" for all questions, or options such as "I don't know" for a small subset of questions, and these responses were set as missing values. In addition, `r get_count_and_percent(bns$finished, 'FALSE')` students did not finish the survey. These two factors are the cause of missing data (i.e., not 100% of respondents reporting). In each table/figure, the n reporting refers to the total number of non-missing responses, while the percent reporting reflects the percent of non-missing responses.*
 
 <br />
 
 
 ## Use of Website and Access to Data 
 
-Please reach out to our PI, Stephanie Bianco <span style="color: blue; text-decoration: underline;">sbianco@csuchico.edu</span>, if you would like more information on using or citing this website, accessing the data, methods used, or survey instruments used. Dissemination activities are in progress.
+Please reach out to our PI, Stephanie Bianco <span style="color: blue; text-decoration: underline;">sbianco@csuchico.edu</span>, if you would like more information on using or citing this website, accessing the data, methods used, or survey instruments used.
 
 
 

@@ -117,7 +117,7 @@ bns$GAD7 <- case_when(bns$GAD7_tmp >= 15 ~ "Severe anxiety",
 #| fig-cap: !expr sprintf("%s Generalized Anxiety Classification %s.", NextFigure(), print_n_reporting('GAD7'))
 
 
-plot_frq(bns$GAD7, geom.colors = plot_color, ylim=c(0,650), wrap.labels = 16) + xlab('') + ylab("Number of Students")
+plot_frq(bns$GAD7, geom.colors = plot_color, ylim=c(0, 1.3*max(table(bns$GAD7))), wrap.labels = 16) + xlab('') + ylab("Number of Students")
 
 ```
 
@@ -173,7 +173,7 @@ plot_likert(questions,
 
 **Additional Notes:** These questions (from the **validated PHQ-9**) were used to classify depression severity (see [Depression Severity Classification](#Depression-Severity-Classification)).
 
-**Summary:** Some highlights of the results include the following: In the past two weeks, `r count_and_percent(bns$q109_2, "Nearly every day", "More than half the days", "Several days")` students have felt down, depressed or hopeless for several days, more than half the days, or nearly every day; `r count_and_percent(bns$q109_3, "Nearly every day", "More than half the days", "Several days")` students have had trouble falling or staying asleep for several days, more than half the days, or nearly every day; `r count_and_percent(bns$q109_4, "Nearly every day", "More than half the days", "Several days")` students have felt tired or had little energy for several days, more than half the days, or nearly every day; and `r count_and_percent(bns$q109_9, "Nearly every day", "More than half the days", "Several days")` students have had thoughts that they would be better off dead or had thoughts of hurting themselves for several days, more than half the days, or nearly every day.
+**Summary:** Some highlights of the results include the following: In the past two weeks, `r count_and_percent(bns$q109_2, "Nearly every day", "More than half the days", "Several days")` students have felt down, depressed, or hopeless for several days, more than half the days, or nearly every day; `r count_and_percent(bns$q109_3, "Nearly every day", "More than half the days", "Several days")` students have had trouble falling or staying asleep for several days, more than half the days, or nearly every day; `r count_and_percent(bns$q109_4, "Nearly every day", "More than half the days", "Several days")` students have felt tired or had little energy for several days, more than half the days, or nearly every day; and `r count_and_percent(bns$q109_9, "Nearly every day", "More than half the days", "Several days")` students have had thoughts that they would be better off dead or had thoughts of hurting themselves for several days, more than half the days, or nearly every day.
 
 
 
@@ -215,13 +215,13 @@ bns$PHQ9 <- case_when(bns$PHQ9_tmp >= 20 ~ "Severe depression",
 ```{r}
 #| fig-cap: !expr sprintf("%s Depression Severity Classification %s.", NextFigure(), print_n_reporting('PHQ9'))
 
-plot_frq(bns$PHQ9, geom.colors = plot_color, ylim=c(0,650), wrap.labels = 14) + xlab('') + ylab("Number of Students")
+plot_frq(bns$PHQ9, geom.colors = plot_color, ylim=c(0, 1.3*max(table(bns$PHQ9))), wrap.labels = 14) + xlab('') + ylab("Number of Students")
 
 ```
 
 **Survey Question:** *This variable was created from the questions in the [Depression](#Depression) section.*
 
-**Additional Notes:** This variable was created using the **validated PHQ-9** severity scoring. "Not at all" was scored as 0, "Several days" was scored as 1, "More than half the days" was scored as 2, and "Nearly every day" was scored as 3. Individuals' scores were added together. Those classified with "None/Minimal depression" had scores of 0-4, "Mild depression" had scores of 5-9, "Moderate depression" had scores of 10-14, "Moderately severe depression" had scores of 15-19, and "Severe depression had scores of 20-27. Anyone who answered "Prefer not to answer" to at least one of the nine questions was not classified. 
+**Additional Notes:** This variable was created using the **validated PHQ-9** severity scoring. "Not at all" was scored as 0, "Several days" was scored as 1, "More than half the days" was scored as 2, and "Nearly every day" was scored as 3. Individuals' scores were added together. Those classified with "None/Minimal depression" had scores of 0-4, "Mild depression" had scores of 5-9, "Moderate depression" had scores of 10-14, "Moderately severe depression" had scores of 15-19, and "Severe depression" had scores of 20-27. Anyone who answered "Prefer not to answer" to at least one of the nine questions was not classified. 
 
 
 **Summary:** A total of `r get_count_and_percent(bns$PHQ9, "None/Minimal depression")` students were classified as having none/minimal depression, `r get_count_and_percent(bns$PHQ9, "Mild depression")` were classified as having mild depression, `r get_count_and_percent(bns$PHQ9, "Moderate depression")` were classified as having moderate depression, `r get_count_and_percent(bns$PHQ9, "Moderately severe depression")` were classified as having moderately severe depression, and `r get_count_and_percent(bns$PHQ9, "Severe depression")` were classified as having severe depression.
@@ -234,7 +234,7 @@ plot_frq(bns$PHQ9, geom.colors = plot_color, ylim=c(0,650), wrap.labels = 14) + 
 
 ```{r}
 #| fig-cap: !expr sprintf("%s Suicidal Thoughts %s.", NextFigure(), print_n_reporting('q110'))
-plot_frq(bns$q110, geom.colors = plot_color, ylim=c(0,300), wrap.labels = 16, sort.frq = 'desc') + xlab('') + ylab("Number of Students")
+plot_frq(bns$q110, geom.colors = plot_color, drop.empty = FALSE, ylim=c(0, 1.3*max(table(bns$q110))), wrap.labels = 16, sort.frq = 'desc') + xlab('') + ylab("Number of Students")
 ```
 
 
@@ -242,7 +242,7 @@ plot_frq(bns$q110, geom.colors = plot_color, ylim=c(0,300), wrap.labels = 16, so
 
 **Additional Notes:** Students who reported having thoughts that they would be better off dead or had thoughts of hurting themselves for several days, more than half the days, or nearly every day (see [Depression](#Depression) section) were shown this question. All of these students were also sent an automatic email from Qualtrics containing many mental health resources. Students who responded that they were currently having thoughts of suicide and have a plan of how they might do it were immediately taken to a new page displaying the national suicide hotline.  
 
-**Summary:** Of those who had thoughts that they were better off dead or had thoughts of hurting themselves, `r get_count_and_percent(bns$q110, "I am safe right now (I am not thinking of hurting myself)")` students reported feeling safe right now; `r get_count_and_percent(bns$q110, "I am having thoughts of suicide currently, but am not planning on hurting myself")` students reported having thoughts of suicide, but were not planning on hurting themselves; and `r get_count_and_percent(bns$q110, "I am having thoughts of suicide currently and have a plan for how I might do it")` reported currently having suicidal thoughts with a plan for how they might do it.
+**Summary:** Of those who had thoughts that they were better off dead or had thoughts of hurting themselves, `r get_count_and_percent(bns$q110, "I am safe right now (I am not thinking of hurting myself)")` students reported feeling safe right now; `r get_count_and_percent(bns$q110, "I am having thoughts of suicide currently, but am not planning on hurting myself")` students reported having thoughts of suicide but were not planning on hurting themselves; and none reported currently having suicidal thoughts with a plan for how they might do it.
 
 <br />
 
@@ -253,7 +253,7 @@ plot_frq(bns$q110, geom.colors = plot_color, ylim=c(0,300), wrap.labels = 16, so
 ```{r}
 #| fig-cap: !expr sprintf("%s Mental Health Services Access %s.", NextFigure(), print_n_reporting('q113'))
 
-plot_frq(bns$q113, geom.colors = plot_color, ylim=c(0,1500), wrap.labels = 16, sort.frq = 'desc') + xlab('Mental Health Services Access') + ylab("Number of Students")
+plot_frq(bns$q113, geom.colors = plot_color, ylim=c(0, 1.3*max(table(bns$q113))), wrap.labels = 16, sort.frq = 'desc') + xlab('Mental Health Services Access') + ylab("Number of Students")
 ```
 
 **Survey Question:** *We are interested in understanding your experience with campus-based mental health supports. This might include a counselor, therapist, or group-based counseling. Do you have access to mental health services on your campus?*
@@ -300,7 +300,7 @@ access_mhs_vars %>%
 ```{r}
 #| fig-cap: !expr sprintf("%s Mental Health Services Use %s.", NextFigure(), print_n_reporting('q114'))
 
-plot_frq(bns$q114, geom.colors = plot_color, ylim=c(0,1500), wrap.labels = 16, sort.frq = 'desc') + xlab('Use of Campus Mental Health Services') + ylab("Number of Students")
+plot_frq(bns$q114, geom.colors = plot_color, ylim=c(0, 1.3*max(table(bns$q114))), wrap.labels = 16, sort.frq = 'desc') + xlab('Use of Campus Mental Health Services') + ylab("Number of Students")
 ```
 
 
@@ -380,7 +380,7 @@ kable() %>% kable_styling(bootstrap_options = "striped")
 
 **Additional Notes:** This question was displayed only to students who selected "Yes" to using campus-based mental health services (see [Mental Health Services Use](#MHS-Use)).
 
-**Summary:** Of those who reported using campus-based mental health services, `r get_count_and_percent(bns$counseling_one_on_one, "1")` reported using one-on-one counseling, `r get_count_and_percent(bns$counseling_drop_in, "1")` reported using drop-in counseling, `r get_count_and_percent(bns$counseling_other, "1")` reported using other support services, and `r get_count_and_percent(bns$counseling_group, "1")` reported using group counseling. 
+**Summary:** Of those who reported using campus-based mental health services, `r get_count_and_percent(bns$counseling_one_on_one, "1")` reported using one-on-one counseling, `r get_count_and_percent(bns$counseling_drop_in, "1")` reported using drop-in counseling, `r get_count_and_percent(bns$counseling_other, "1")` reported using other support services, and none reported using group counseling. 
 
 ---
 
@@ -401,7 +401,7 @@ names(questions2) <- c("It was easy to access services",
             "I would recommend these services to someone else")
 
 plot_likert(questions2,
-            grid.range = c(1.2, 1.2),
+            grid.range = c(1.5, 1.5),
             wrap.legend.labels = 20,
             expand.grid = FALSE,
             values = "sum.outside",
@@ -415,7 +415,7 @@ plot_likert(questions2,
 
 **Additional Notes:** This question was displayed only to students who reported using campus-based one-on-one counseling ([Mental Health Counseling](#MH-Counseling)). 
 
-**Summary:** Overall, students who have used one-on-one counseling have had mostly positive experiences. A notable `r count_and_percent(bns$q116_2, "Disagree", "Strongly disagree", "Neither agree nor disagree")` were neutral, disagreed, or strongly disagreed that the wait time to be seen was acceptable; and `r count_and_percent(bns$q116_5, "Disagree", "Strongly disagree", "Neither agree nor disagree")` were neutral, disagreed, or strongly disagreed that the support they received helped them. 
+**Summary:** Overall, students who have used one-on-one counseling have had mostly positive experiences. A notable `r count_and_percent(bns$q116_2, "Disagree", "Strongly disagree", "Neither agree nor disagree")` were neutral, disagreed, or strongly disagreed that the wait time to be seen was acceptable; and `r count_and_percent(bns$q116_5, "Disagree", "Strongly disagree", "Neither agree nor disagree")` were neutral or disagreed that the support they received helped them. 
 
 <br />
 
@@ -423,7 +423,7 @@ plot_likert(questions2,
 
 # Footnotes: {#Footnotes}
 
-1. [Generalized Anxiety Disorder 7-item (GAD-7](https://adaa.org/sites/default/files/GAD-7_Anxiety-updated_0.pdf)
+1. [Generalized Anxiety Disorder 7-item (GAD-7)](https://adaa.org/sites/default/files/GAD-7_Anxiety-updated_0.pdf)
 
 2. [Patient Health Questionnaire (PHQ-9)](https://med.stanford.edu/fastlab/research/imapp/msrs/_jcr_content/main/accordion/accordion_content3/download_256324296/file.res/PHQ9%20id%20date%2008.03.pdf)
 

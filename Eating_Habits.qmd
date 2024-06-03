@@ -32,9 +32,9 @@ bns$q77 <- recode(bns$q77, "0 servings per day" = "0 servings", "1-2 servings pe
 ```
 
 
-Students were asked to report questions related to their eating habits. This includes cooking habits, access to kitchens, access to storing food, fruit and vegetable intake, sugar sweetened beverage intake, fast food intake, alcohol intake, and confidence in cooking. 
+Students were asked to report questions related to their eating habits. This includes cooking habits, access to kitchens, access to storing food, fruit and vegetable intake, sugar-sweetened beverage intake, fast food intake, alcohol intake, and confidence in cooking. 
 
-*As a reminder, students had the option to select "Prefer not to answer" for all questions, and these responses were set as missing values. In addition, `r get_count_and_percent(bns$finished, 'FALSE')` students did not finish the survey. The n reporting refers to the total number of non-missing responses while the percent reporting reflects the percent of non-missing responses.*
+*As a reminder, students had the option to select "Prefer not to answer" for all questions, and these responses were set as missing values. In addition, `r get_count_and_percent(bns$finished, 'FALSE')` students did not finish the survey. The n reporting refers to the total number of non-missing responses, while the percent reporting reflects the percent of non-missing responses.*
 
 
 ## Food Access and Eating Behaviors
@@ -106,7 +106,7 @@ plot_likert(questions,
 #| fig-height: 5
 #| fig-width: 6
 
-plot_frq(bns$q77, geom.colors = plot_color) + xlab('Daily Fruit & Vegetable Servings') + ylab("Number of Students")
+plot_frq(bns$q77, geom.colors = plot_color) + xlab('Daily Fruit & Vegetable Servings') + ylab("Number of Students") + ylim(0, 1.3*max(table(bns$q77)))
 
 ```
 
@@ -138,7 +138,7 @@ bns$q78 <- recode(bns$q78, "Zero" = "Zero",
                   "57-64 ounces" = "57-64", 
                   "64 ounces or more" = "64+")
 
-plot_frq(bns$q78, geom.colors = plot_color) + xlab('Daily Sugar-Sweetened Beverage Intake (Ounces)') + ylab("Number of Students") 
+plot_frq(bns$q78, geom.colors = plot_color, drop.empty = FALSE) + xlab('Daily Sugar-Sweetened Beverage Intake (Ounces)') + ylab("Number of Students") + ylim(0, 1.3*max(table(bns$q78)))
 
 ```
 
@@ -165,7 +165,7 @@ bns$q79 <- recode(bns$q79, "Zero" = "Zero times",
                    "9-10 times per week" = "9-10 times", 
                    "11 times or more per week" = "11+ times")
 
-plot_frq(bns$q79, geom.colors = plot_color) + xlab('Weekly Fast Food Intake') + ylab("Number of Students")
+plot_frq(bns$q79, geom.colors = plot_color, drop.empty = FALSE) + xlab('Weekly Fast Food Intake') + ylab("Number of Students") + ylim(0, 1.3*max(table(bns$q79)))
 ```
 
 **Survey Question:** *How frequently do you eat from fast food restaurants, convenience stores, or vending machines for a meal or meal replacement?*
@@ -187,7 +187,7 @@ levels(bns$q80) <- gsub(" per week", "", levels(bns$q80))
 bns$q80 <- recode(bns$q80, "Zero" = "Zero days")
 
 
-plot_frq(bns$q80, geom.colors = plot_color) + xlab('Weekly Alcohol Intake') + ylab("Number of Students")
+plot_frq(bns$q80, geom.colors = plot_color) + xlab('Weekly Alcohol Intake') + ylab("Number of Students") + ylim(0, 1.3*max(table(bns$q80)))
 
 ```
 
@@ -207,7 +207,7 @@ plot_frq(bns$q80, geom.colors = plot_color) + xlab('Weekly Alcohol Intake') + yl
 
 
 
-plot_frq(bns$q81, geom.colors = plot_color) + xlab('Alcohol Servings Consumed When Drinking') + ylab("Number of Students")
+plot_frq(bns$q81, geom.colors = plot_color) + xlab('Alcohol Servings Consumed When Drinking') + ylab("Number of Students") + ylim(0, 1.3*max(table(bns$q81)))
 
 ```
 
@@ -254,11 +254,11 @@ plot_likert(questions,
 
 # Footnotes: {#Footnotes}
 
-1. This question was developed from the [Fall 2015-Spring 2019 American College Health Association’s National College Health Assessment](https://www.acha.org/NCHA/About_ACHA_NCHA/Survey/NCHA/About/Survey.aspx?hkey=7e9f6752-2b47-4671-8ce7-ba7a529c9934) which is no longer publicly available.
+1. This question was developed from the [Fall 2015-Spring 2019 American College Health Association’s National College Health Assessment](https://www.acha.org/NCHA/About_ACHA_NCHA/Survey/NCHA/About/Survey.aspx?hkey=7e9f6752-2b47-4671-8ce7-ba7a529c9934), which is no longer publicly available.
 
 2. These questions were developed by the [Behavioral Risk Factor Surveillance System](https://www.cdc.gov/brfss/questionnaires/pdf-ques/2018_BRFSS_English_Questionnaire-508.pdf#page=35) screening tool.
 
-3. These questions were developed by the [Share Our Strength’s Cooking Matters survey tool](https://foodsharelc.org/wp-content/uploads/2019/07/2017-Survey.CMF_.English.pdf) (a USDA-SNAP-Ed approved survey).
+3. These questions were developed by the [Share Our Strength’s Cooking Matters survey tool](https://foodsharelc.org/wp-content/uploads/2019/07/2017-Survey.CMF_.English.pdf) (a USDA SNAP-Ed approved survey).
 
 
 <br />

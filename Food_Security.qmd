@@ -76,7 +76,7 @@ plot_likert(questions,
 bns <- bns %>% mutate(two.item = case_when(food_insecure_2item == 0 ~ "No",
                                            food_insecure_2item == 1 ~ "Yes",
                                            TRUE ~ as.character(food_insecure_2item)))
-plot_frq(bns$two.item, geom.colors = plot_color, ylim=c(0,1250)) + xlab('Food Insecure') + ylab("Frequency")
+plot_frq(bns$two.item, geom.colors = plot_color, ylim=c(0, 1.3*max(table(bns$food_insecure_2item)))) + xlab('Food Insecure') + ylab("Frequency") 
 
 
 ```
@@ -88,7 +88,7 @@ plot_frq(bns$two.item, geom.colors = plot_color, ylim=c(0,1250)) + xlab('Food In
 
 **Additional Notes:** Students who responded with "Sometimes true" or "Often true" to one or both of the questions in the [Food Insecurity Screening](#Food-Insecurity-Screening) section were deemed food insecure.
 
-**Summary:** A total of `r get_count_and_percent(bns$food_insecure_2item, "1")` students were deemed food insecure. Please note: The majority of the study sample were low-income students and these rates are not generalizable to all college students. 
+**Summary:** A total of `r get_count_and_percent(bns$food_insecure_2item, "1")` students were deemed food insecure. Please note: The majority of the study sample were low-income students, and these rates are not generalizable to all college students. 
 
 :::
 :::
@@ -105,8 +105,8 @@ plot_frq(bns$two.item, geom.colors = plot_color, ylim=c(0,1250)) + xlab('Food In
 
 question <- "fs"
 qlabel <- c("I did not run out of money for food",
-            "My friends, family or roommates gave me money for groceries.",
-            "My friends, family or roommates fed me or took me out to eat.",
+            "My friends, family, or roommates gave me money for groceries.",
+            "My friends, family, or roommates fed me or took me out to eat.",
             "I started skipping meals.",
             "I went to the food pantry or other free food organizations.",
             "I can get free food/meals from my work.",

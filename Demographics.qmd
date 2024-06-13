@@ -187,6 +187,7 @@ bns$q11_tmp <- na_if(bns$q11_tmp, "I don't have dependents")
 bns$q11_tmp <- fct_drop(bns$q11_tmp, only = c("I don't have dependents", "0"))
 
 
+
 ```
 
 
@@ -196,7 +197,7 @@ bns$q11_tmp <- fct_drop(bns$q11_tmp, only = c("I don't have dependents", "0"))
 #| fig-cap: !expr sprintf("%s Reported Number of Dependents Among Total Sample %s and %s Reported Number of Dependents Among Those With Dependents %s.", NextFigure(), print_n_reporting('q11'), NextFigure(), print_n_reporting('q11_tmp'))
 
 
-fg <- bns %>%
+fg <- bns %>% select(q11) %>% na.omit() %>%
   count(q11, .drop = FALSE) %>%
   mutate(
     perc = round(proportions(n) * 100, 1),
@@ -212,7 +213,7 @@ p1 <- fg %>% na.omit() %>% ggplot(aes(q11, n)) +
 
 
 
-fg2 <- bns %>%
+fg2 <- bns %>% select(q11_tmp) %>% na.omit() %>%
   count(q11_tmp, .drop = FALSE) %>%
   mutate(
     perc = round(proportions(n) * 100, 1),

@@ -207,7 +207,7 @@ fg <- bns %>% select(q11) %>% na.omit() %>%
 
 p1 <- fg %>% na.omit() %>% ggplot(aes(q11, n)) +
   geom_col(fill = "#00944d") +
-  geom_text(aes(label = res), vjust = -0.5) + scale_y_continuous(limits = c(0, 300)) + xlab('') + 
+  geom_text(aes(label = res), vjust = -0.1) + scale_y_continuous(limits = c(0, 300)) + xlab('') + 
   ylab("Number of Students") + ggtitle('Number of Dependents Among Total Sample') +
   scale_x_discrete(labels = function(x) str_wrap(x, width = 12))
 
@@ -223,7 +223,7 @@ fg2 <- bns %>% select(q11_tmp) %>% na.omit() %>%
 
 p2 <- fg2 %>% na.omit() %>% ggplot(aes(q11_tmp, n)) +
   geom_col(fill = "#00944d") +
-  geom_text(aes(label = res), vjust = -0.5) + scale_y_continuous(limits = c(0, 6)) + xlab('') + 
+  geom_text(aes(label = res), vjust = -0.1) + scale_y_continuous(limits = c(0, 6)) + xlab('') + 
   ylab("Number of Students") + ggtitle('Number of Dependents Among Those With Dependents')
 
 
@@ -235,7 +235,7 @@ grid.arrange(p1, p2)
 **Survey Question: ** *If you have dependents, then how many of them receive more than 50% of their financial support from you?*
 
 
-**Summary: ** Among the total sample, `r get_count_and_percent(bns$q11, "I don't have dependents")` students reported having no dependents and `r get_count_and_percent(bns$q11, "0")` reported having dependents receiving less than 50% financial support. The remaining `r count_and_percent(bns$q11, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")` students reported having dependents receiving more than 50% financial support. Of those with dependents receiving more than 50% financial support, `r get_count_and_percent(bns$q11_tmp, '1')` had one dependent, `r get_count_and_percent(bns$q11_tmp, '2')` had two, and `r get_count_and_percent(bns$q11_tmp, '3')` student had 3 or more dependents.
+**Summary: ** Among the total sample, `r get_count_and_percent(bns$q11, "I don't have dependents")` students reported having no dependents, and `r get_count_and_percent(bns$q11, "0")` reported having dependents receiving less than 50% financial support. The remaining `r count_and_percent(bns$q11, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10")` students reported having dependents receiving more than 50% financial support. Of those with dependents receiving more than 50% financial support, `r get_count_and_percent(bns$q11_tmp, '1')` had one dependent, `r get_count_and_percent(bns$q11_tmp, '2')` had two, and `r get_count_and_percent(bns$q11_tmp, '3')` student had 3 or more dependents.
 
 <br>
 

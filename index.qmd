@@ -96,19 +96,9 @@ Please reach out to our PI, Stephanie Bianco <span style="color: blue; text-deco
 Center for Healthy Communities. (2023). Statewide Basic Needs and Student Success Survey, UC Berkeley Results. https://chicocalfresh.github.io/BNS3_Statewide_Summary_UC_Berkeley/
 
 
-## Other Sites
+## Related Works
 
-[Pilot 1 Basic Needs and Student Success Survey](https://chicocalfresh.github.io/bns-website/index.html)
-
-[Pilot 2 Basic Needs and Student Success Survey](https://chicocalfresh.github.io/bns-pilot2-website/index.html)
-
-[Pilot 2 Basic Needs and Student Success Survey, CSU Chico Results](https://chicocalfresh.github.io/bns-pilot2-chico/)
-
-[Pilot 2 Basic Needs and Student Success Survey, CSU Northridge Results](https://chicocalfresh.github.io/bns-pilot2-csun/)
-
-[Pilot 2 Basic Needs and Student Success Survey, Fresno State Results](https://chicocalfresh.github.io/bns-pilot2-fresno/)
-
-[Statewide Basic Needs and Student Success Survey](https://chicocalfresh.github.io/BNS3_Statewide_Summary/)
+-    [Statewide Basic Needs and Student Success Survey](https://chicocalfresh.github.io/BNS3_Statewide_Summary/)
 
 
 <br />

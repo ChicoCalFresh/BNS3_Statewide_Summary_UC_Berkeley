@@ -143,7 +143,6 @@ bns$household_size <- as.numeric(bns$household_size)
 
 ## CalFresh Food Eligibility
 
-<div class = "row">
 
 ::: col-md-6
 ```{r}
@@ -168,10 +167,6 @@ plot_frq(c1$`ifelse(bns.calfresh_eligible == 0, "No", "Yes")`, geom.colors = plo
 
 **Summary:** A total of `r get_count_and_percent(bns$calfresh_eligible, "1")` students were likely eligible for CalFresh Food, while `r get_count_and_percent(bns$calfresh_eligible, "0")` were likely not eligible. Many students selected "Prefer not to answer" when reporting their income. CalFresh Food eligibility was unable to be determined among these students and among any students who answered "Prefer not to answer" to household size.
 
-<div class = "col-md-5">
-
-
----
 
 <br>
 
@@ -219,6 +214,8 @@ bns$EOP <- "Yes"
 **Additional Notes:** There are many other possible work exemptions for students to be eligible for CalFresh Food, where only the 20 hours/week work exemption was assessed in this survey. 
 
 **Summary:** Based on self-reported data, `r get_count_and_percent(bns$citizenship, "Yes")` students met the citizenship requirement of either being a US Citizen or a lawful permanent resident. A total of `r get_count_and_percent(bns$income_eligible, "Yes")` students met the income/household size requirements, and `r get_count_and_percent(bns$work_eligible, "Yes")` students met the 20 hours/week work exemption. As a reminder, students don't need to meet a work requirement if they are enrolled in an LPIE such as an approved EOP/EOPS.
+
+---
 
 <br>
 

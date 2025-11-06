@@ -38,7 +38,11 @@ website:
             text: Physical Activity
           - href: Mental_Health.qmd
             text: Mental Health
-
+    right: 
+      - href: https://chicocalfresh.github.io/BNS3_Statewide_Summary/Methods.html
+        text: Methods
+      - href: https://chcchicostate.org/research-evaluation/
+        text: Related Works
 format:
   html:
     theme: 

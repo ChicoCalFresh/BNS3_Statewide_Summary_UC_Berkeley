@@ -96,11 +96,6 @@ Please reach out to our PI, Stephanie Bianco <span style="color: blue; text-deco
 Center for Healthy Communities. (2023). Statewide Basic Needs and Student Success Survey, UC Berkeley Results. https://chicocalfresh.github.io/BNS3_Statewide_Summary_UC_Berkeley/
 
 
-## Related Works
-
-- [Statewide Basic Needs and Student Success Survey](https://chicocalfresh.github.io/BNS3_Statewide_Summary/)
-
-
 <br />
 
 :::: {.columns}
